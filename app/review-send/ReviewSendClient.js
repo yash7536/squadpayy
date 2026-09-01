@@ -11,13 +11,16 @@ import { buildWhatsAppLink } from "@/lib/phone";
 import { useBillDraft, clearBillDraft } from "@/lib/billDraftStore";
 import { createPaymentRequestsAction } from "@/lib/paymentRequestsActions";
 
-// Every item assigned to everyone by default — matches splitByItem's own
-// fallback for an unassigned item (lib/splitBill.js), so switching to
-// "Split by item" without touching anything yet shows the same amounts as
-// "Split equally" until the sender actually unchecks someone. Keyed by
-// item name, same convention splitByItem's assignments map already uses.
-function defaultAssignments(items, people) {
-  return Object.fromEntries(items.map((item) => [item.name, [...people]]));
+// Every item starts genuinely UNASSIGNED (an empty array, not "everyone")
+// — see lib/splitBill.js's splitByItem doc comment for why an empty array
+// is treated differently from no assignment key at all. Defaulting to
+// "everyone" would make "Split by item" silently compute the same numbers
+// as "Split equally" until touched, which is exactly what made the two
+// modes look broken/identical before. Starting empty means switching to
+// item mode is immediately, visibly different — nothing is assigned yet,
+// on purpose — and the sender has to actually pick who ordered what.
+function emptyAssignments(items) {
+  return Object.fromEntries(items.map((item) => [item.name, []]));
 }
 
 // Matches the "Review & Send" screen of the Figma prototype (node 2:132).
@@ -56,16 +59,15 @@ export default function ReviewSend({ isAuthenticated }) {
 
   const participants = ["You", ...contacts.map((contact) => contact.name)];
 
-  // Lazy-initialized once per mount from the current items/participants —
-  // this screen is only ever reached after Add People has already run, so
-  // both are already final by the time this state is created.
-  const [assignments, setAssignments] = useState(() =>
-    defaultAssignments(billItems, participants)
-  );
+  // Lazy-initialized once per mount from the current items — this screen
+  // is only ever reached after Add People has already run, so the item
+  // list is already final by the time this state is created. Every item
+  // starts with no one assigned (see emptyAssignments above).
+  const [assignments, setAssignments] = useState(() => emptyAssignments(billItems));
 
   function toggleAssignment(itemName, person) {
     setAssignments((prev) => {
-      const current = prev[itemName] ?? participants;
+      const current = prev[itemName] ?? [];
       const next = current.includes(person)
         ? current.filter((p) => p !== person)
         : [...current, person];
@@ -74,12 +76,14 @@ export default function ReviewSend({ isAuthenticated }) {
   }
 
   // "Split equally" divides the full confirmed total (already includes
-  // tax/tip, if any). "Split by item" reuses Part K's
-  // splitBillWithTaxAndTip with the live `assignments` above, so tax/tip
-  // are still divided proportionally to what each person actually
-  // ordered — both methods are guaranteed (by lib/splitBill.test.mjs) to
-  // sum to exactly the bill total, no floating-point/rounding
-  // discrepancies, no matter how items are assigned.
+  // tax/tip, if any) — always complete, instantly. "Split by item" reuses
+  // Part K's splitBillWithTaxAndTip with the live `assignments` above, so
+  // tax/tip are still divided proportionally to what each person actually
+  // ordered — but per lib/splitBill.js's splitByItem, an item nobody's
+  // been assigned to yet contributes nothing, so this only sums to the
+  // full bill total once every item has at least one owner (see
+  // isSplitReady below) — not necessarily on every keystroke while the
+  // sender is still assigning things.
   const splitResult =
     splitMethod === "equal"
       ? splitEqually(billTotal, participants)
@@ -90,6 +94,15 @@ export default function ReviewSend({ isAuthenticated }) {
           people: participants,
           assignments,
         });
+
+  const unassignedItems =
+    splitMethod === "item"
+      ? billItems.filter((item) => (assignments[item.name] ?? []).length === 0)
+      : [];
+  // "Split equally" has nothing to assign, so it's always ready to send.
+  const isSplitReady = splitMethod === "equal" || unassignedItems.length === 0;
+  const assignedAmount = splitResult.reduce((sum, entry) => sum + entry.amount, 0);
+  const unassignedAmount = billTotal - assignedAmount;
 
   const phoneByName = new Map(contacts.map((contact) => [contact.name, contact.phone]));
 
@@ -138,23 +151,32 @@ export default function ReviewSend({ isAuthenticated }) {
       </p>
 
       {/* This is the actual visible difference between the two modes:
-          "Split by item" shows a real assignment UI that recalculates the
-          amounts below as it changes; "Split equally" doesn't, because
-          there's nothing to assign. */}
+          "Split by item" starts with nothing assigned and shows a real
+          assignment UI that recalculates the amounts below as it changes;
+          "Split equally" doesn't, because there's nothing to assign. */}
       {splitMethod === "item" && (
         <div className="mt-[22px] flex flex-col gap-3">
-          <p className="text-sm text-black">Who ordered what?</p>
+          <p className="text-sm text-black">
+            Tap who ordered each item below — an item can go to one person
+            or be shared by several.
+          </p>
           {billItems.map((item) => {
-            const owners = assignments[item.name] ?? participants;
+            const owners = assignments[item.name] ?? [];
+            const isUnassigned = owners.length === 0;
             return (
               <div
                 key={item.name}
-                className="rounded-[10px] border border-[#D9D9D9] p-3"
+                className={`rounded-[10px] border p-3 ${
+                  isUnassigned ? "border-red-300" : "border-[#D9D9D9]"
+                }`}
               >
                 <div className="flex items-center justify-between text-sm text-black">
                   <span>{item.name}</span>
                   <span>Rs.{item.amount.toLocaleString("en-IN")}</span>
                 </div>
+                {isUnassigned && (
+                  <p className="mt-1 text-xs text-red-600">Not assigned yet</p>
+                )}
                 <div className="mt-2 flex flex-wrap gap-2">
                   {participants.map((person) => {
                     const checked = owners.includes(person);
@@ -178,6 +200,12 @@ export default function ReviewSend({ isAuthenticated }) {
               </div>
             );
           })}
+          {!isSplitReady && (
+            <p className="text-sm text-red-600">
+              Rs.{unassignedAmount.toLocaleString("en-IN")} isn&rsquo;t
+              assigned to anyone yet — assign every item to continue.
+            </p>
+          )}
         </div>
       )}
 
@@ -207,8 +235,10 @@ export default function ReviewSend({ isAuthenticated }) {
 
               {/* Anonymous demo only — a signed-in sender gets one bulk
                   "Send requests" action below instead (real, persisted,
-                  per-recipient reminder screens with tracked status). */}
-              {!isAuthenticated && !isSelf && (
+                  per-recipient reminder screens with tracked status).
+                  Hidden while items are still unassigned — these amounts
+                  aren't final yet, so there's nothing worth sending. */}
+              {!isAuthenticated && !isSelf && isSplitReady && (
                 whatsappUrl ? (
                   <a
                     href={whatsappUrl}
@@ -227,7 +257,11 @@ export default function ReviewSend({ isAuthenticated }) {
         })}
       </div>
 
-      {isAuthenticated ? (
+      {!isSplitReady ? (
+        <p className="mt-[38px] text-sm text-[#C0C0C0]">
+          Assign every item above to see the final split and continue.
+        </p>
+      ) : isAuthenticated ? (
         <>
           <p className="mt-[38px] text-sm text-[#C0C0C0]">
             Payment reminders are sent via WhatsApp.
