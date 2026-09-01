@@ -36,7 +36,7 @@ export default async function Home() {
       <div className="flex-1" />
 
       <Button href="/add-bill" variant="primary" className="mx-auto mb-14 h-[52px] w-[300px]">
-        Upload a bill
+        Try SquadPay
       </Button>
     </div>
   );
