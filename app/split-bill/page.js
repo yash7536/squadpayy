@@ -37,22 +37,26 @@ export default function SplitBill() {
         type="button"
         onClick={() => setMethod("equal")}
         aria-pressed={method === "equal"}
-        className={`mt-[25px] flex h-14 w-full items-center justify-center rounded-[10px] border-2 bg-[#D9D9D9] text-base text-black ${
+        className={`mt-[25px] flex h-14 w-full flex-col items-center justify-center rounded-[10px] border-2 bg-[#D9D9D9] text-black ${
           method === "equal" ? "border-[#737373]" : "border-transparent"
         }`}
       >
-        Split equally
+        <span className="text-base">Split equally</span>
+        <span className="text-xs text-[#737373]">Everyone pays the same share</span>
       </button>
 
       <button
         type="button"
         onClick={() => setMethod("item")}
         aria-pressed={method === "item"}
-        className={`mt-[22px] flex h-14 w-full items-center justify-center rounded-[10px] border-2 bg-[#D9D9D9] text-base text-black ${
+        className={`mt-[22px] flex h-14 w-full flex-col items-center justify-center rounded-[10px] border-2 bg-[#D9D9D9] text-black ${
           method === "item" ? "border-[#737373]" : "border-transparent"
         }`}
       >
-        Split by item
+        <span className="text-base">Split by item</span>
+        <span className="text-xs text-[#737373]">
+          Assign items to people after Add People
+        </span>
       </button>
 
       <Button

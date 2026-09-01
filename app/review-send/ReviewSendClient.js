@@ -11,6 +11,15 @@ import { buildWhatsAppLink } from "@/lib/phone";
 import { useBillDraft, clearBillDraft } from "@/lib/billDraftStore";
 import { createPaymentRequestsAction } from "@/lib/paymentRequestsActions";
 
+// Every item assigned to everyone by default — matches splitByItem's own
+// fallback for an unassigned item (lib/splitBill.js), so switching to
+// "Split by item" without touching anything yet shows the same amounts as
+// "Split equally" until the sender actually unchecks someone. Keyed by
+// item name, same convention splitByItem's assignments map already uses.
+function defaultAssignments(items, people) {
+  return Object.fromEntries(items.map((item) => [item.name, [...people]]));
+}
+
 // Matches the "Review & Send" screen of the Figma prototype (node 2:132).
 //
 // The people, split method, and bill itself (items/tax/tip/total) all
@@ -20,6 +29,14 @@ import { createPaymentRequestsAction } from "@/lib/paymentRequestsActions";
 // not a fixed mock example. This computation is always local (pure
 // functions over the draft) and happens the same way whether or not
 // anyone is signed in — it's TEMPORARY, in-browser-only data either way.
+//
+// Item assignment lives here (not on Split Bill) because this is the
+// first point in the flow where the participant list actually exists —
+// Split Bill only picks the METHOD, before Add People has run. Choosing
+// "Split by item" there just explains that assignment happens next; the
+// real, functional difference between the two modes — an assignment UI
+// that recalculates each person's share live, vs. one flat equal-split
+// list — is what happens right here.
 //
 // What differs by `isAuthenticated` (passed down from the Server
 // Component in page.js) is only the final step:
@@ -38,12 +55,31 @@ export default function ReviewSend({ isAuthenticated }) {
   const { splitMethod, contacts, billItems, billTax, billTip, billTotal } = useBillDraft();
 
   const participants = ["You", ...contacts.map((contact) => contact.name)];
+
+  // Lazy-initialized once per mount from the current items/participants —
+  // this screen is only ever reached after Add People has already run, so
+  // both are already final by the time this state is created.
+  const [assignments, setAssignments] = useState(() =>
+    defaultAssignments(billItems, participants)
+  );
+
+  function toggleAssignment(itemName, person) {
+    setAssignments((prev) => {
+      const current = prev[itemName] ?? participants;
+      const next = current.includes(person)
+        ? current.filter((p) => p !== person)
+        : [...current, person];
+      return { ...prev, [itemName]: next };
+    });
+  }
+
   // "Split equally" divides the full confirmed total (already includes
   // tax/tip, if any). "Split by item" reuses Part K's
-  // splitBillWithTaxAndTip so tax/tip are still divided proportionally to
-  // what each person ordered, rather than being dropped — both methods
-  // are guaranteed (by lib/splitBill.test.mjs) to sum to exactly the bill
-  // total, no floating-point/rounding discrepancies.
+  // splitBillWithTaxAndTip with the live `assignments` above, so tax/tip
+  // are still divided proportionally to what each person actually
+  // ordered — both methods are guaranteed (by lib/splitBill.test.mjs) to
+  // sum to exactly the bill total, no floating-point/rounding
+  // discrepancies, no matter how items are assigned.
   const splitResult =
     splitMethod === "equal"
       ? splitEqually(billTotal, participants)
@@ -52,6 +88,7 @@ export default function ReviewSend({ isAuthenticated }) {
           tax: billTax,
           tip: billTip,
           people: participants,
+          assignments,
         });
 
   const phoneByName = new Map(contacts.map((contact) => [contact.name, contact.phone]));
@@ -99,6 +136,50 @@ export default function ReviewSend({ isAuthenticated }) {
       <p className="mt-[5px] text-2xl font-semibold text-black">
         Rs.{billTotal.toLocaleString("en-IN")}
       </p>
+
+      {/* This is the actual visible difference between the two modes:
+          "Split by item" shows a real assignment UI that recalculates the
+          amounts below as it changes; "Split equally" doesn't, because
+          there's nothing to assign. */}
+      {splitMethod === "item" && (
+        <div className="mt-[22px] flex flex-col gap-3">
+          <p className="text-sm text-black">Who ordered what?</p>
+          {billItems.map((item) => {
+            const owners = assignments[item.name] ?? participants;
+            return (
+              <div
+                key={item.name}
+                className="rounded-[10px] border border-[#D9D9D9] p-3"
+              >
+                <div className="flex items-center justify-between text-sm text-black">
+                  <span>{item.name}</span>
+                  <span>Rs.{item.amount.toLocaleString("en-IN")}</span>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {participants.map((person) => {
+                    const checked = owners.includes(person);
+                    return (
+                      <button
+                        key={person}
+                        type="button"
+                        onClick={() => toggleAssignment(item.name, person)}
+                        aria-pressed={checked}
+                        className={`rounded-full px-3 py-1 text-xs ${
+                          checked
+                            ? "bg-[#737373] text-white"
+                            : "bg-[#EDEDED] text-[#737373]"
+                        }`}
+                      >
+                        {person}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <div className="mt-[27px] flex flex-col">
         {splitResult.map((entry, index) => {

@@ -6,6 +6,7 @@ import ScreenHeader from "@/components/ScreenHeader";
 import Button from "@/components/Button";
 import { prepareReceiptImage, ReceiptImageError } from "@/lib/receiptImage";
 import { setPendingImage, clearReceiptScan } from "@/lib/receiptScanStore";
+import { useBillDraft } from "@/lib/billDraftStore";
 
 // Matches the "Add Bill" screen of the Figma prototype (node 1:29).
 //
@@ -15,13 +16,17 @@ import { setPendingImage, clearReceiptScan } from "@/lib/receiptScanStore";
 // native file picker via a hidden <input type="file">; the "Take a photo"
 // input adds `capture="environment"`, which mobile browsers use as a hint
 // to open the camera directly (rear-facing, appropriate for photographing
-// a receipt) instead of a general file/gallery picker. "Enter manually"
-// is unchanged from Phase 3 — it has nothing to read, so it skips straight
-// to Review Bill.
+// a receipt) instead of a general file/gallery picker.
+//
+// "Enter manually" always starts Review Bill's item list fresh/empty —
+// explicitly choosing this option supersedes whatever was there before
+// (a leftover scan attempt, an earlier abandoned manual bill), matching
+// "start empty" rather than silently carrying old items forward.
 export default function AddBill() {
   const router = useRouter();
   const photoInputRef = useRef(null);
   const galleryInputRef = useRef(null);
+  const { setBillItems } = useBillDraft();
   const [isPreparing, setIsPreparing] = useState(false);
   const [error, setError] = useState(null);
 
@@ -31,6 +36,11 @@ export default function AddBill() {
   useEffect(() => {
     clearReceiptScan();
   }, []);
+
+  function handleEnterManually() {
+    setBillItems([]);
+    router.push("/review-bill");
+  }
 
   async function handleFileSelected(event) {
     const file = event.target.files?.[0];
@@ -99,9 +109,10 @@ export default function AddBill() {
         </Button>
 
         <Button
-          href="/review-bill"
+          type="button"
           variant="secondary"
           className="mt-[37px] h-14 w-full"
+          onClick={handleEnterManually}
         >
           Enter manually
         </Button>
