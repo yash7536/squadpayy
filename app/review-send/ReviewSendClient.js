@@ -11,18 +11,6 @@ import { buildWhatsAppLink } from "@/lib/phone";
 import { useBillDraft, clearBillDraft } from "@/lib/billDraftStore";
 import { createPaymentRequestsAction } from "@/lib/paymentRequestsActions";
 
-// Every item starts genuinely UNASSIGNED (an empty array, not "everyone")
-// — see lib/splitBill.js's splitByItem doc comment for why an empty array
-// is treated differently from no assignment key at all. Defaulting to
-// "everyone" would make "Split by item" silently compute the same numbers
-// as "Split equally" until touched, which is exactly what made the two
-// modes look broken/identical before. Starting empty means switching to
-// item mode is immediately, visibly different — nothing is assigned yet,
-// on purpose — and the sender has to actually pick who ordered what.
-function emptyAssignments(items) {
-  return Object.fromEntries(items.map((item) => [item.name, []]));
-}
-
 // Matches the "Review & Send" screen of the Figma prototype (node 2:132).
 //
 // The people, split method, and bill itself (items/tax/tip/total) all
@@ -55,18 +43,30 @@ export default function ReviewSend({ isAuthenticated }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState(null);
-  const { splitMethod, contacts, billItems, billTax, billTip, billTotal } = useBillDraft();
+  const {
+    splitMethod,
+    contacts,
+    billItems,
+    billTax,
+    billTip,
+    billTotal,
+    itemAssignments: assignments,
+    setItemAssignments,
+  } = useBillDraft();
 
   const participants = ["You", ...contacts.map((contact) => contact.name)];
 
-  // Lazy-initialized once per mount from the current items — this screen
-  // is only ever reached after Add People has already run, so the item
-  // list is already final by the time this state is created. Every item
-  // starts with no one assigned (see emptyAssignments above).
-  const [assignments, setAssignments] = useState(() => emptyAssignments(billItems));
-
+  // Persisted in the shared bill draft (lib/billDraftStore.js), not local
+  // component state — a missing/empty entry for an item means "no one
+  // assigned yet" (see lib/splitBill.js's splitByItem doc comment for why
+  // that's treated differently from no assignment key at all, which is
+  // what makes "Split by item" start visibly different from "Split
+  // equally" instead of silently matching it). Persisting this (rather
+  // than a useState tied to this component's mount) means navigating away
+  // — e.g. to Sign in and back — doesn't reset assignments the sender
+  // already made.
   function toggleAssignment(itemName, person) {
-    setAssignments((prev) => {
+    setItemAssignments((prev) => {
       const current = prev[itemName] ?? [];
       const next = current.includes(person)
         ? current.filter((p) => p !== person)
@@ -75,15 +75,29 @@ export default function ReviewSend({ isAuthenticated }) {
     });
   }
 
+  // The persisted itemAssignments map only gets a key for an item once
+  // it's actually been toggled at least once (see toggleAssignment) — a
+  // never-touched item simply has no entry. lib/splitBill.js's splitByItem
+  // treats a MISSING key as "no assignment info, fall back to everyone"
+  // (case 1) and an EXPLICIT EMPTY array as "genuinely unassigned,
+  // contributes nothing" (case 2) — two deliberately different things.
+  // Normalizing here, once, before the split math ever sees it, makes
+  // every current bill item explicit — matching what the UI below already
+  // shows ("Not assigned yet" for anything with no owners) — rather than
+  // silently falling back to an equal split for an item nobody's touched.
+  const normalizedAssignments = Object.fromEntries(
+    billItems.map((item) => [item.name, assignments[item.name] ?? []])
+  );
+
   // "Split equally" divides the full confirmed total (already includes
   // tax/tip, if any) — always complete, instantly. "Split by item" reuses
-  // Part K's splitBillWithTaxAndTip with the live `assignments` above, so
-  // tax/tip are still divided proportionally to what each person actually
-  // ordered — but per lib/splitBill.js's splitByItem, an item nobody's
-  // been assigned to yet contributes nothing, so this only sums to the
-  // full bill total once every item has at least one owner (see
-  // isSplitReady below) — not necessarily on every keystroke while the
-  // sender is still assigning things.
+  // Part K's splitBillWithTaxAndTip with the live, normalized assignments
+  // above, so tax/tip are still divided proportionally to what each
+  // person actually ordered — but per lib/splitBill.js's splitByItem, an
+  // item nobody's been assigned to yet contributes nothing, so this only
+  // sums to the full bill total once every item has at least one owner
+  // (see isSplitReady below) — not necessarily on every keystroke while
+  // the sender is still assigning things.
   const splitResult =
     splitMethod === "equal"
       ? splitEqually(billTotal, participants)
@@ -92,12 +106,12 @@ export default function ReviewSend({ isAuthenticated }) {
           tax: billTax,
           tip: billTip,
           people: participants,
-          assignments,
+          assignments: normalizedAssignments,
         });
 
   const unassignedItems =
     splitMethod === "item"
-      ? billItems.filter((item) => (assignments[item.name] ?? []).length === 0)
+      ? billItems.filter((item) => normalizedAssignments[item.name].length === 0)
       : [];
   // "Split equally" has nothing to assign, so it's always ready to send.
   const isSplitReady = splitMethod === "equal" || unassignedItems.length === 0;
@@ -161,7 +175,7 @@ export default function ReviewSend({ isAuthenticated }) {
             or be shared by several.
           </p>
           {billItems.map((item) => {
-            const owners = assignments[item.name] ?? [];
+            const owners = normalizedAssignments[item.name];
             const isUnassigned = owners.length === 0;
             return (
               <div

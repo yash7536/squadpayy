@@ -105,7 +105,7 @@ export default function LoginForm() {
   if (hasSent) {
     return (
       <div className="mx-auto flex w-full max-w-[393px] flex-1 flex-col bg-white px-4">
-        <ScreenHeader title="Check your email" backHref="/" />
+        <ScreenHeader title="Check your email" backHref={next} />
 
         <p className="mt-[14px] text-sm text-black">
           We sent a sign-in link to <strong>{email}</strong>. Open it on
@@ -138,7 +138,7 @@ export default function LoginForm() {
 
   return (
     <div className="mx-auto flex w-full max-w-[393px] flex-1 flex-col bg-white px-4">
-      <ScreenHeader title="Sign in" backHref="/" />
+      <ScreenHeader title="Sign in" backHref={next} />
 
       <p className="mt-[14px] text-sm text-black">
         Sign in to send payment requests and track who&rsquo;s paid.
