@@ -3,6 +3,7 @@ import ScreenHeader from "@/components/ScreenHeader";
 import Button from "@/components/Button";
 import { createSupabaseServerClient } from "@/lib/supabaseServer";
 import { getOwnedPaymentRequestByToken } from "@/lib/paymentRequestsDb";
+import { buildWhatsAppLink } from "@/lib/phone";
 import SendReminderButton from "./SendReminderButton";
 
 // Reads from Supabase on every request — this must never show a stale
@@ -60,7 +61,10 @@ export default async function PaymentReminder({ params }) {
         &ldquo;{request.message}&rdquo;
       </div>
 
-      <SendReminderButton />
+      <SendReminderButton
+        whatsappUrl={buildWhatsAppLink(request.phone, request.message)}
+        personName={request.person}
+      />
 
       <Button
         href="/payment-status"

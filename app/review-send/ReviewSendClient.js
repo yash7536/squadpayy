@@ -4,42 +4,61 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import ScreenHeader from "@/components/ScreenHeader";
 import Button from "@/components/Button";
-import { mockReceiptItems, mockReceiptTotal, mockBillLabel, mockBillMessageLabel } from "@/lib/mockBill";
-import { splitEqually, splitByItem } from "@/lib/splitBill";
-import { useBillFlow } from "@/lib/BillFlowContext";
+import { mockBillLabel, mockBillMessageLabel } from "@/lib/mockBill";
+import { splitEqually, splitBillWithTaxAndTip } from "@/lib/splitBill";
+import { useBillDraft, clearBillDraft } from "@/lib/billDraftStore";
 import { createPaymentRequestsAction } from "@/lib/paymentRequestsActions";
 
 // Matches the "Review & Send" screen of the Figma prototype (node 2:132).
 //
-// The people and split method come from BillFlowContext — whatever the
-// sender actually chose on Split Bill and actually added/removed on Add
-// People is exactly what's shown and sent here, not a fixed mock example.
+// The people, split method, and bill itself (items/tax/tip/total) all
+// come from the sessionStorage-backed bill draft — whatever the sender
+// actually scanned/entered on Review Bill, chose on Split Bill, and
+// added/removed on Add People is exactly what's computed and sent here,
+// not a fixed mock example.
 export default function ReviewSend() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState(null);
-  const { splitMethod, contacts } = useBillFlow();
+  const { splitMethod, contacts, billItems, billTax, billTip, billTotal } = useBillDraft();
 
   const participants = ["You", ...contacts.map((contact) => contact.name)];
+  // "Split equally" divides the full confirmed total (already includes
+  // tax/tip, if any). "Split by item" reuses Part K's
+  // splitBillWithTaxAndTip so tax/tip are still divided proportionally to
+  // what each person ordered, rather than being dropped — both methods
+  // are guaranteed (by lib/splitBill.test.mjs) to sum to exactly the bill
+  // total, no floating-point/rounding discrepancies.
   const splitResult =
     splitMethod === "equal"
-      ? splitEqually(mockReceiptTotal, participants)
-      : splitByItem(mockReceiptItems, participants, {});
+      ? splitEqually(billTotal, participants)
+      : splitBillWithTaxAndTip({
+          items: billItems,
+          tax: billTax,
+          tip: billTip,
+          people: participants,
+        });
 
   // Saves a real bill + people + splits + payment_requests to Supabase
   // (see lib/paymentRequestsActions.js), then moves on to the reminder
-  // screen for whoever's owed first. No real SMS/WhatsApp/email/payment
-  // integration — this only generates what would be sent.
+  // screen for whoever's owed first. Sending itself is a wa.me deep link
+  // built from each person's phone number (see lib/phone.js), generated
+  // on the Payment Reminder screen — no WhatsApp API integration.
   function handleSend() {
     setError(null);
     startTransition(async () => {
       try {
         const { requests } = await createPaymentRequestsAction({
           splitResult,
-          totalAmount: mockReceiptTotal,
+          contacts,
+          totalAmount: billTotal,
           billTitle: mockBillLabel,
           billMessageLabel: mockBillMessageLabel,
         });
+
+        // The bill is safely in Supabase now — clear the local draft so
+        // it doesn't linger and get reused for the next unrelated bill.
+        clearBillDraft();
 
         const firstPending = requests.find((request) => request.status === "pending");
         router.push(
@@ -62,7 +81,7 @@ export default function ReviewSend() {
       <p className="mt-[14px] text-sm text-black">Your split</p>
       <p className="mt-[7px] text-sm text-black">Total</p>
       <p className="mt-[5px] text-2xl font-semibold text-black">
-        Rs.{mockReceiptTotal.toLocaleString("en-IN")}
+        Rs.{billTotal.toLocaleString("en-IN")}
       </p>
 
       <div className="mt-[27px] flex flex-col">
@@ -79,7 +98,7 @@ export default function ReviewSend() {
       </div>
 
       <p className="mt-[38px] text-sm text-[#C0C0C0]">
-        Payment requests will be sent by text.
+        Payment reminders are sent via WhatsApp.
       </p>
 
       <Button

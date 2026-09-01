@@ -2,8 +2,7 @@
 
 import ScreenHeader from "@/components/ScreenHeader";
 import Button from "@/components/Button";
-import { mockReceiptTotal } from "@/lib/mockBill";
-import { useBillFlow } from "@/lib/BillFlowContext";
+import { useBillDraft } from "@/lib/billDraftStore";
 
 // Matches the "Split Bill" screen of the Figma prototype (node 2:70).
 //
@@ -12,11 +11,14 @@ import { useBillFlow } from "@/lib/BillFlowContext";
 // toggle, we add a minimal border to show what's picked, without changing
 // the designed colors, text, or layout otherwise.
 //
-// The chosen method is held in BillFlowContext (not local state) so it
-// carries through Add People to Review & Send, which actually computes
-// the split with it.
+// The chosen method is held in the sessionStorage-backed bill draft (not
+// local state) so it carries through Add People to Review & Send, and
+// survives an accidental refresh along the way. The total shown here is
+// the CONFIRMED bill from Review Bill (real scan or manual entry, see
+// app/review-bill/page.js) — not a hardcoded mock — so it matches whatever
+// bill this split is actually for.
 export default function SplitBill() {
-  const { splitMethod: method, setSplitMethod: setMethod } = useBillFlow();
+  const { splitMethod: method, setSplitMethod: setMethod, billTotal } = useBillDraft();
 
   return (
     <div className="mx-auto flex w-full max-w-[393px] flex-1 flex-col bg-white px-4">
@@ -24,7 +26,7 @@ export default function SplitBill() {
 
       <p className="mt-[14px] text-sm text-black">Total</p>
       <p className="mt-[5px] text-2xl font-semibold text-black">
-        Rs.{mockReceiptTotal.toLocaleString("en-IN")}
+        Rs.{billTotal.toLocaleString("en-IN")}
       </p>
 
       <p className="mt-[40px] text-sm text-black">

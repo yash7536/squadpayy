@@ -1,5 +1,4 @@
 import { Inter } from "next/font/google";
-import { BillFlowProvider } from "@/lib/BillFlowContext";
 import "./globals.css";
 
 // The Figma prototype specifies Inter as the typeface, so we use it here
@@ -17,9 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white">
-        <BillFlowProvider>{children}</BillFlowProvider>
-      </body>
+      <body className="min-h-full flex flex-col bg-white">{children}</body>
     </html>
   );
 }
