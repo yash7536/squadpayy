@@ -111,7 +111,13 @@ create table if not exists payment_requests (
   split_id uuid not null references splits (id) on delete cascade,
   token uuid not null unique default gen_random_uuid(),
   message text, -- the friendly reminder text generated for the sender to share
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  -- Set when the sender taps "Remind me later" on Payment Reminder — a
+  -- truthful record of the last time they acknowledged this request, NOT
+  -- a scheduled future reminder (there is no scheduler/cron/notification
+  -- service in this app). Nullable: most requests have never been
+  -- "remind later"'d. See lib/paymentRequestsDb.js's markReminderSent.
+  last_reminded_at timestamptz
 );
 
 alter table payment_requests enable row level security;

@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 import ScreenHeader from "@/components/ScreenHeader";
-import Button from "@/components/Button";
 import { createSupabaseServerClient } from "@/lib/supabaseServer";
 import { getOwnedPaymentRequestByToken } from "@/lib/paymentRequestsDb";
 import { buildWhatsAppLink } from "@/lib/phone";
+import { formatRelativeTime } from "@/lib/formatRelativeTime";
 import SendReminderButton from "./SendReminderButton";
+import RemindLaterButton from "./RemindLaterButton";
 
 // Reads from Supabase on every request — this must never show a stale
 // cached page for someone else's token.
@@ -66,16 +67,16 @@ export default async function PaymentReminder({ params }) {
         personName={request.person}
       />
 
-      <Button
-        href="/payment-status"
-        variant="secondary"
-        className="mt-[21px] h-14 w-full"
-      >
-        Remind me later
-      </Button>
+      <RemindLaterButton token={token} />
 
-      <p className="mt-[12px] text-sm text-[#C0C0C0]">Reminder frequency</p>
-      <p className="text-sm text-[#C0C0C0]">Once a day</p>
+      {/* Truthful record of the last time this was acknowledged — not a
+          promise of a future automatic reminder, since there's no
+          scheduler behind this app. */}
+      {request.lastRemindedAt && (
+        <p className="mt-[12px] text-sm text-[#C0C0C0]">
+          Last reminded: {formatRelativeTime(request.lastRemindedAt)}
+        </p>
+      )}
     </div>
   );
 }
