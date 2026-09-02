@@ -51,12 +51,17 @@ The Gemini API key is only used server-side, in app/api/scan-receipt, and never 
 
 ## Screenshots
 
-Screenshots to be added:
+### Home
+![SquadPay home](screenshots/home.png)
 
-- Home
-- Receipt scanning / review
-- Split bill
-- Review & Send
+### Receipt scanning / review
+![Receipt scanning and review](screenshots/receipt-review.png)
+
+### Split bill
+![Split bill](screenshots/split-bill.png)
+
+### Review & Send
+![Review and send](screenshots/review-send.png)
 
 ## Local setup
 
