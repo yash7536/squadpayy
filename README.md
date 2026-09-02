@@ -51,9 +51,7 @@ The Gemini API key is only used server-side, in app/api/scan-receipt, and never 
 
 ## Screenshots
 
-Screenshots to be added:
-
-- Home
+- Home 
 - Receipt scanning / review
 - Split bill
 - Review & Send
