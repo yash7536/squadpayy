@@ -1,11 +1,15 @@
 # Business / User Value — Hypotheses to Validate
 
-**None of the numbers below are measured yet.** This document exists to
-define *what SquadPay should eventually measure* to know whether it
-actually delivers value — not to claim it already does. Every line is
-phrased as a hypothesis, not a result. Do not quote anything here as an
-achieved outcome; nothing has been validated with real users at the time
-of writing (see `user-validation-plan.md` for how that will happen).
+**None of the quantitative numbers below are measured yet.** This
+document exists to define *what SquadPay should eventually measure* to
+know whether it actually delivers value — not to claim it already does.
+Every line is phrased as a hypothesis, not a result. A first small-sample
+qualitative round has since been run — see
+[`user-validation-results.md`](user-validation-results.md) — which speaks
+to some of these directionally (e.g. H7, trust) but does not produce the
+quantitative data (H1–H6) these hypotheses are actually asking for. Do
+not quote anything here as an achieved, measured outcome until it has
+real numbers behind it, not just a qualitative signal.
 
 ## Why hypotheses, not metrics-already-hit
 

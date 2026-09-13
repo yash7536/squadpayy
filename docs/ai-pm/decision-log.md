@@ -108,6 +108,18 @@ effort.
 
 ## C. P2 — do not fix now
 
+- **Direct UPI/GPay payment integration.** The single most-requested
+  feature from real user validation (3 of the sample —
+  `user-validation-results.md`), explicitly deferred anyway. SquadPay's
+  job is receipt → split → review → **request** payment; it never moves
+  money itself, and that boundary is deliberate (see
+  `guardrail-architecture.md`'s "AI output never directly becomes a
+  financial action" principle — the same discipline applies to the
+  product's own scope, not just the AI). A payment-completion integration
+  is a materially larger scope and liability surface (real money movement,
+  a payment provider integration, its own compliance/security review) than
+  one round of qualitative feedback justifies building reactively. Worth a
+  dedicated future decision, not a bolt-on here.
 - **A dedicated "no tax detected" warning.** Considered and rejected:
   receipt-13 in this exact evaluation set *legitimately* has no tax line,
   so this check would cry wolf on a real, valid receipt. A warning that's

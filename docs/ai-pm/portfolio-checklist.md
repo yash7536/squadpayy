@@ -6,10 +6,10 @@ artifact below is claimed as finished unless it actually is.
 
 | # | Artifact | Status | Where |
 |---|---|---|---|
-| 1 | **Working demo** | ✅ Exists — the product runs today (`npm run dev`), full flow works including AI extraction, both guardrail layers, and manual fallback | This repository |
-| 2 | **Loom walkthrough** (problem → scan → extraction → review → split → payment request) | ❌ Not recorded | Not fabricated — record once the product is in a state worth walking through on camera; script should follow `case-study.md` §1–2's problem/before-after framing |
-| 3 | **Evaluation sheet** (15-receipt baseline, metrics, failure analysis) | ✅ Exists | [`eval/ANALYSIS.md`](../../eval/ANALYSIS.md), [`eval/results/summary.csv`](../../eval/results/summary.csv) (spreadsheet-importable) |
-| 4 | **User validation** (real feedback + iteration evidence) | ❌ Not conducted | Plan exists at [`user-validation-plan.md`](user-validation-plan.md); results section intentionally does not exist yet — will be added as `user-validation-results.md` only after real sessions run |
+| 1 | **Working demo** | ✅ Exists — **live in production** at [squadpayy.vercel.app](https://squadpayy.vercel.app), full flow smoke-tested against the real deployment (AI extraction, both guardrail layers, manual fallback, split calculation, WhatsApp request, mobile) | Production URL + this repository |
+| 2 | **Loom walkthrough** (problem → scan → extraction → review → split → payment request) | ❌ Not recorded | Not fabricated — record once ready to walk through on camera; script should follow `case-study.md` §1–2's problem/before-after framing, now against the live production URL |
+| 3 | **Evaluation sheet** (15-receipt baseline, metrics, failure analysis) | ✅ Exists — baseline **and** second real evaluation run | [`eval/ANALYSIS.md`](../../eval/ANALYSIS.md), [`eval/results/summary.csv`](../../eval/results/summary.csv), [`eval/results-run-2/summary.csv`](../../eval/results-run-2/summary.csv) (spreadsheet-importable) |
+| 4 | **User validation** (real feedback + iteration evidence) | ✅ Conducted — small-sample exploratory round | [`user-validation-plan.md`](user-validation-plan.md) (design) + [`user-validation-results.md`](user-validation-results.md) (actual observations) |
 | 5 | **Case study** (problem → hypothesis → decisions → AI workflow → evaluation → failures → guardrails → iteration → learnings) | ✅ Exists | [`case-study.md`](case-study.md) |
 
 ## What "done" means for the two missing artifacts

@@ -184,14 +184,32 @@ exactly where the schema-rejected-discount case routes to.
 ## 7. Business / user value
 
 No fabricated numbers here — see
-[`business-hypotheses.md`](business-hypotheses.md) for the actual list of
-measurable hypotheses this product should eventually validate with real
-users, and [`user-validation-plan.md`](user-validation-plan.md) for how.
+[`business-hypotheses.md`](business-hypotheses.md) for the full list of
+measurable hypotheses this product should eventually validate at scale.
 
 **What friction this is designed to remove:** manual line-item
 transcription, manual tax/split arithmetic, and the social awkwardness of
 initiating a payment ask (a WhatsApp-ready request is a lower-friction ask
 than a bespoke message).
+
+**Real-user validation (small-sample, exploratory — see
+[`user-validation-results.md`](user-validation-results.md) for full
+detail and caveats):**
+- 6 participants showed hesitation around asking friends to repay shared
+  expenses — direct confirmation the underlying problem (§1) is real.
+- Participants used SquadPay to identify forgotten or outstanding amounts
+  and request payment — the observed value was surfacing money people had
+  stopped tracking, not the receipt scan itself.
+- 2 participants initially lacked confidence in how SquadPay could help
+  and needed a demonstration; 3 found the workflow helpful.
+- 3 participants requested GPay/UPI integration for smoother payment
+  completion — the most consistent single piece of feedback, logged and
+  deliberately deferred (see Product decisions, below, and
+  `decision-log.md`).
+
+This is exploratory evidence from a small sample, not a market
+conclusion — no completion rate, satisfaction score, or adoption number is
+reported because none was measured with enough rigor to state honestly.
 
 **Why someone would actually use it:** because the tedious 80% (reading a
 receipt, doing the math) is handled for them, while they keep full control
@@ -233,20 +251,41 @@ and guardrail work above exists to back it, not because it sounds good.
   yet fired from an actual *live* Gemini call end to end. That specific
   confirmation requires the next authorized evaluation run.
 
+## Status update — both prior "next steps" are now done
+
+1. ✅ **Second real Gemini evaluation, completed** (assembled across two
+   API-key sessions due to free-tier quota limits — see
+   [`eval/ANALYSIS.md`](../../eval/ANALYSIS.md) §7). Confirmed the new
+   guardrails behave correctly against **live** model output, not just
+   simulated/cached data: `detectAnomalies()` correctly flags a fresh
+   receipt-15 extraction, and `isUnsupportedNegativeValueError()` was
+   verified against a real `ZodError` from the real production schema.
+   No regressions found on any of the 15 receipts versus baseline.
+2. ✅ **Small-sample user validation, completed** — see
+   [`user-validation-results.md`](user-validation-results.md). Confirmed
+   the core problem is real (6 of the sample showed hesitation around
+   repayment follow-up) and surfaced the most requested next feature
+   (UPI/GPay integration, requested by 3 participants) — deliberately not
+   built reactively off one round of feedback; see Product Decisions above
+   and `decision-log.md`.
+3. **The product has since been deployed** to the existing production
+   infrastructure (GitHub `squadpayy` → Vercel auto-deploy →
+   `squadpayy.vercel.app`), smoke-tested against the live URL — receipt
+   scan, both guardrail layers, item/equal splitting, WhatsApp payment
+   request generation, and mobile viewport all confirmed working in
+   production, not just locally.
+
 ## Next steps, in priority order
 
-1. **Run the next authorized 15-receipt Gemini evaluation** — the only
-   remaining way to confirm the new guardrails behave correctly against
-   live model output, not just simulated/cached data. Read results
-   side-by-side with the baseline; do not informally eyeball whether the
-   score "improved."
-2. **Run the 5–10 person user validation test** (`user-validation-plan.md`)
-   — nothing about real user trust, comprehension, or completion is known
-   yet, and no further product decisions should claim to be user-informed
-   until this happens.
-3. **Record the Loom walkthrough** once the above two are done, so it
-   demonstrates the current, evaluated, guardrailed product rather than
-   needing a re-record later.
-4. Everything in `decision-log.md`'s P1 list remains open and un-prioritized
-   against each other until real usage data (from steps 1–2) suggests which
-   one actually matters.
+1. **Record the Loom walkthrough** against the now-live production URL —
+   the product is deployed, evaluated (twice), and validated with real
+   users, so this no longer needs a re-record later.
+2. **Evaluate UPI/GPay integration** as a scoped, separate decision — the
+   single most consistent piece of real user feedback (§ Real-user
+   validation). Not started; needs its own problem/decision/evaluation
+   pass, not a reactive addition.
+3. Everything in `decision-log.md`'s P1 list remains open and
+   un-prioritized against each other until enough real production usage
+   accumulates to suggest which one actually matters.
+4. A larger (beyond 5–10 person) user validation round, once there's a
+   live URL to point real testers at directly instead of a local build.

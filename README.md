@@ -2,6 +2,8 @@
 
 **Making settling shared expenses less awkward.**
 
+**Live:** [squadpayy.vercel.app](https://squadpayy.vercel.app)
+
 Splitting the bill is easy. Asking friends to pay you back is awkward.
 SquadPay handles the tedious part (reading a receipt, doing the tax math,
 working out who owes what) so the only thing left is a low-friction
@@ -60,18 +62,24 @@ published as-is, including the failures:
   guardrail layer exists (`lib/domain/anomaly-detection.ts`) — reconciling
   arithmetic is not the same as being right.
 
-Full breakdown: **[`eval/ANALYSIS.md`](eval/ANALYSIS.md)**. Methodology,
-how to reproduce it, and its stated limitations:
+A second real evaluation run has since completed too — same dataset, same
+scoring, stored separately so the two never get conflated. No regressions,
+no cherry-picking. Full breakdown, both runs: **[`eval/ANALYSIS.md`](eval/ANALYSIS.md)**.
+Methodology, how to reproduce it, and its stated limitations:
 **[`eval/README.md`](eval/README.md)**.
 
 ## What's real vs. what's a hypothesis
 
-This is a working product, not yet a validated one. No real users have
-tested it. Anything about time saved, adoption, or trust is written up as
-a hypothesis to test, not a result — see
-**[`docs/ai-pm/business-hypotheses.md`](docs/ai-pm/business-hypotheses.md)**
-and the (not-yet-executed) test design in
-**[`docs/ai-pm/user-validation-plan.md`](docs/ai-pm/user-validation-plan.md)**.
+This is a working, deployed product with one small-sample user-validation
+round behind it — not yet a product with measured business outcomes.
+A first round of real user testing found the core problem is genuinely
+felt (6 of the sample showed real hesitation around asking friends to
+repay them) and surfaced the most-requested next feature (UPI/GPay
+integration, deliberately deferred) — see
+**[`docs/ai-pm/user-validation-results.md`](docs/ai-pm/user-validation-results.md)**.
+Anything about adoption, retention, or measured time saved is still a
+hypothesis, not a result — see
+**[`docs/ai-pm/business-hypotheses.md`](docs/ai-pm/business-hypotheses.md)**.
 
 ## Project docs
 
@@ -80,11 +88,12 @@ and the (not-yet-executed) test design in
 | [`docs/ai-pm/case-study.md`](docs/ai-pm/case-study.md) | The full portfolio narrative |
 | [`docs/ai-pm/decision-log.md`](docs/ai-pm/decision-log.md) | P0/P1/P2 — what was fixed, what wasn't, and why |
 | [`docs/ai-pm/guardrail-architecture.md`](docs/ai-pm/guardrail-architecture.md) | The layered AI-safety design, in full |
-| [`docs/ai-pm/business-hypotheses.md`](docs/ai-pm/business-hypotheses.md) | Metrics to validate — explicitly not yet measured |
-| [`docs/ai-pm/user-validation-plan.md`](docs/ai-pm/user-validation-plan.md) | The (not-yet-run) 5–10 person usability test design |
+| [`docs/ai-pm/business-hypotheses.md`](docs/ai-pm/business-hypotheses.md) | Quantitative metrics to validate — explicitly not yet measured |
+| [`docs/ai-pm/user-validation-plan.md`](docs/ai-pm/user-validation-plan.md) | The usability test design |
+| [`docs/ai-pm/user-validation-results.md`](docs/ai-pm/user-validation-results.md) | What the first small-sample round actually found |
 | [`docs/ai-pm/portfolio-checklist.md`](docs/ai-pm/portfolio-checklist.md) | Status of the 5 portfolio artifacts |
 | [`eval/README.md`](eval/README.md) | Evaluation methodology, how to run it, its limitations |
-| [`eval/ANALYSIS.md`](eval/ANALYSIS.md) | The baseline results, read and interpreted |
+| [`eval/ANALYSIS.md`](eval/ANALYSIS.md) | Baseline **and** second-run results, read and interpreted |
 
 ## Running it locally
 
