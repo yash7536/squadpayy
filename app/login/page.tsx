@@ -1,14 +1,27 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Logo, LogoMark } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
 import { sendMagicLink } from "@/lib/supabase/actions";
+import { useSquadPay } from "@/lib/data/store-context";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { resetDemoData } = useSquadPay();
   const [email, setEmail] = useState("");
   const [pending, startTransition] = useTransition();
   const [result, setResult] = useState<{ ok: boolean; message: string } | null>(null);
+
+  function handleContinueInDemoMode() {
+    // Explicitly seeds the sample demo dataset (a no-op if this visitor
+    // already has their own real local splits/contacts — see
+    // resetDemoData's own guard) — this is the one deliberate entry point
+    // for the demo experience; a plain visit to /home starts empty.
+    resetDemoData();
+    router.push("/home");
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -108,12 +121,13 @@ export default function LoginPage() {
         </div>
 
         {!result?.ok && (
-          <a
-            href="/home"
+          <button
+            type="button"
+            onClick={handleContinueInDemoMode}
             className="text-label-sm text-on-surface-variant hover:text-on-surface font-semibold transition-colors mt-6"
           >
             Prefer to explore first? Continue in demo mode
-          </a>
+          </button>
         )}
       </div>
     </div>

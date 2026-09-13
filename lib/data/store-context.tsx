@@ -43,6 +43,16 @@ import type { User } from "@supabase/supabase-js";
 
 const STORAGE_KEY = "squadpay-demo-v1";
 
+/**
+ * Default state for a genuinely new anonymous visitor — just themselves,
+ * nothing else. The sample friends/splits in fixtures.ts (DEMO_PARTICIPANTS
+ * etc.) are real, deliberately-authored demo content, but they must never
+ * be what a real new user silently starts with — see resetDemoData below
+ * for the one explicit, user-triggered way to load them ("Continue in demo
+ * mode" on the sign-in page).
+ */
+const EMPTY_PARTICIPANTS: Participant[] = [{ id: YOU_ID, name: "You", isSelf: true }];
+
 interface PersistedState {
   participants: Participant[];
   splits: Split[];
@@ -119,9 +129,9 @@ interface SquadPayContextValue {
 const SquadPayContext = createContext<SquadPayContextValue | null>(null);
 
 export function SquadPayProvider({ children }: { children: ReactNode }) {
-  const [participants, setParticipants] = useState<Participant[]>(DEMO_PARTICIPANTS);
-  const [splits, setSplits] = useState<Split[]>(DEMO_SPLITS);
-  const [activity, setActivity] = useState<ActivityEvent[]>(DEMO_ACTIVITY);
+  const [participants, setParticipants] = useState<Participant[]>(EMPTY_PARTICIPANTS);
+  const [splits, setSplits] = useState<Split[]>([]);
+  const [activity, setActivity] = useState<ActivityEvent[]>([]);
   const [hydrated, setHydrated] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [authChecked, setAuthChecked] = useState(!isSupabaseConfigured());
@@ -465,7 +475,18 @@ export function SquadPayProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   }, []);
 
+  // Seeds the sample demo dataset — the one explicit, user-triggered path
+  // to it (see app/login/page.tsx's "Continue in demo mode"). Deliberately
+  // a no-op if the visitor already has real local history (their own added
+  // people and/or splits): this must never clobber a returning anonymous
+  // user's actual data. Checked via localStorage directly, not the
+  // `participants`/`splits` state, because the persist effect above writes
+  // the empty default shell (just "You", no splits) to localStorage almost
+  // immediately on every load — that shell existing is not "real data".
   const resetDemoData = useCallback(() => {
+    const persisted = loadPersisted();
+    const hasRealData = persisted && (persisted.splits.length > 0 || persisted.participants.length > 1);
+    if (hasRealData) return;
     setParticipants(DEMO_PARTICIPANTS);
     setSplits(DEMO_SPLITS);
     setActivity(DEMO_ACTIVITY);
