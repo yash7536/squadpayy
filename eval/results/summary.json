@@ -1,0 +1,25 @@
+{
+  "totalReceiptsInDataset": 15,
+  "receiptsEvaluated": 15,
+  "receiptsSkipped": [],
+  "extractionSuccessCount": 11,
+  "extractionFailureCount": 4,
+  "extractionFailureRate": 0.26666666666666666,
+  "fullyCorrectCount": 5,
+  "fullyCorrectRate": 0.3333333333333333,
+  "averageItemAccuracy": 0.8424242424242423,
+  "averageQuantityAccuracy": 1,
+  "averagePriceAccuracy": 0.9090909090909091,
+  "taxAccuracyRate": 0.7272727272727273,
+  "totalAccuracyRate": 0.9090909090909091,
+  "reconciliationSuccessRate": 1,
+  "failureCategoryCounts": {
+    "incorrect_item_name": 3,
+    "incorrect_tax": 3,
+    "timeout_transient_failure": 1,
+    "malformed_response": 3,
+    "incorrect_price": 1,
+    "incorrect_total": 1
+  },
+  "evaluatedAt": "2026-09-13T10:36:05.331Z"
+}

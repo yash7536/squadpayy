@@ -1,0 +1,54 @@
+{
+  "receiptId": "receipt-13",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T10:35:40.214Z",
+  "durationMs": 11571,
+  "imageSha256": "636284664cfc357e05f7b10d67ddb380f828a1be0a20809514f9e7fc0c611a9f",
+  "outcome": {
+    "status": "success",
+    "merchant": "SAMS",
+    "items": [
+      {
+        "name": "J.STB PROMO",
+        "quantity": 1,
+        "amount": 17500
+      },
+      {
+        "name": "Y.B.BAT",
+        "quantity": 1,
+        "amount": 46000
+      },
+      {
+        "name": "Y.BASO PROM",
+        "quantity": 1,
+        "amount": 27500
+      }
+    ],
+    "taxAndService": 0,
+    "total": 91000
+  },
+  "rawExtractedJson": {
+    "merchant": "SAMS",
+    "location": "Bandung",
+    "items": [
+      {
+        "name": "J.STB PROMO",
+        "quantity": 1,
+        "amount": 17500
+      },
+      {
+        "name": "Y.B.BAT",
+        "quantity": 1,
+        "amount": 46000
+      },
+      {
+        "name": "Y.BASO PROM",
+        "quantity": 1,
+        "amount": 27500
+      }
+    ],
+    "subtotal": 91000,
+    "taxAndService": 0,
+    "total": 91000
+  }
+}

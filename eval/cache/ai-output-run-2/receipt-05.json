@@ -1,0 +1,43 @@
+{
+  "receiptId": "receipt-05",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T11:28:01.882Z",
+  "durationMs": 4567,
+  "imageSha256": "8ef85ab1faa41479cd000062f45bab4f774ac18ce2ef49c58cdd0b1a163ba16a",
+  "outcome": {
+    "status": "success",
+    "merchant": "BOA",
+    "items": [
+      {
+        "name": "CRAB CAKE",
+        "quantity": 1,
+        "amount": 15
+      },
+      {
+        "name": "SKIRT STK LUNCH",
+        "quantity": 1,
+        "amount": 28
+      }
+    ],
+    "taxAndService": 4.09,
+    "total": 47.09
+  },
+  "rawExtractedJson": {
+    "merchant": "BOA",
+    "items": [
+      {
+        "name": "CRAB CAKE",
+        "quantity": 1,
+        "amount": 15
+      },
+      {
+        "name": "SKIRT STK LUNCH",
+        "quantity": 1,
+        "amount": 28
+      }
+    ],
+    "subtotal": 43,
+    "taxAndService": 4.09,
+    "total": 47.09
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "receiptId": "receipt-02",
+  "imageFile": "receipt-02.jpg",
+  "merchant": "Villa D'Este Restaurant",
+  "items": [
+    {
+      "name": "Coffee",
+      "quantity": 1,
+      "lineTotal": 3.5
+    },
+    {
+      "name": "Glass House Wine",
+      "quantity": 1,
+      "lineTotal": 9.95
+    },
+    {
+      "name": "Jumbo Cocktail Shrimp",
+      "quantity": 1,
+      "lineTotal": 12.95
+    },
+    {
+      "name": "Escargot Bourguignone",
+      "quantity": 1,
+      "lineTotal": 10.95
+    },
+    {
+      "name": "Veal Zingaria",
+      "quantity": 1,
+      "lineTotal": 23.95
+    },
+    {
+      "name": "Duckling ala Arancio",
+      "quantity": 1,
+      "lineTotal": 25.95
+    }
+  ],
+  "tax": 7.53,
+  "receiptTotal": 94.78,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Clean, all quantities 1. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

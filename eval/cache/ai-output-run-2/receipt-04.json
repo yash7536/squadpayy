@@ -1,0 +1,74 @@
+{
+  "receiptId": "receipt-04",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T11:27:56.796Z",
+  "durationMs": 6835,
+  "imageSha256": "6c757067fd38c8af7ed2f8fc1d5ba0cfcdcd720bc0bd3899675153655f697f16",
+  "outcome": {
+    "status": "success",
+    "merchant": "Friendly Red's of Windham",
+    "items": [
+      {
+        "name": "Cadillac Margarita",
+        "quantity": 2,
+        "amount": 28
+      },
+      {
+        "name": "Maryland Crab Cakes",
+        "quantity": 1,
+        "amount": 14
+      },
+      {
+        "name": "Chicken Caprese",
+        "quantity": 1,
+        "amount": 12
+      },
+      {
+        "name": "Chix Parm Sandwich",
+        "quantity": 1,
+        "amount": 10
+      },
+      {
+        "name": "Bud Light",
+        "quantity": 2,
+        "amount": 7.4
+      }
+    ],
+    "taxAndService": 6.43,
+    "total": 77.83
+  },
+  "rawExtractedJson": {
+    "merchant": "Friendly Red's of Windham",
+    "location": "22 Haverhill Rd, Windham NH",
+    "items": [
+      {
+        "name": "Cadillac Margarita",
+        "quantity": 2,
+        "amount": 28
+      },
+      {
+        "name": "Maryland Crab Cakes",
+        "quantity": 1,
+        "amount": 14
+      },
+      {
+        "name": "Chicken Caprese",
+        "quantity": 1,
+        "amount": 12
+      },
+      {
+        "name": "Chix Parm Sandwich",
+        "quantity": 1,
+        "amount": 10
+      },
+      {
+        "name": "Bud Light",
+        "quantity": 2,
+        "amount": 7.4
+      }
+    ],
+    "subtotal": 71.4,
+    "taxAndService": 6.43,
+    "total": 77.83
+  }
+}

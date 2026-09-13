@@ -1,0 +1,23 @@
+{
+  "receiptId": "receipt-05",
+  "imageFile": "receipt-05.jpg",
+  "merchant": "BOA",
+  "items": [
+    {
+      "name": "Crab Cake",
+      "quantity": 1,
+      "lineTotal": 15
+    },
+    {
+      "name": "Skirt Stk Lunch",
+      "quantity": 1,
+      "lineTotal": 28
+    }
+  ],
+  "tax": 4.09,
+  "receiptTotal": 47.09,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Receipt prints 'Sub Total' twice — once pre-tax (43.00) and again (confusingly relabeled) for the post-tax amount (47.09), which matches 'TOTAL: 47.09'. Suggested gratuity (18%/20%) shown below is informational only, not charged. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

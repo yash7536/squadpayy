@@ -1,0 +1,18 @@
+{
+  "receiptId": "receipt-01",
+  "imageFile": "receipt-01.jpg",
+  "merchant": "Mr. M's Hot Wings & Things Inc",
+  "items": [
+    {
+      "name": "Ribeye Steak Lunch 10",
+      "quantity": 1,
+      "lineTotal": 10
+    }
+  ],
+  "tax": 0.95,
+  "receiptTotal": 10.95,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Single line item; 'med-rare' modifier note has no separate charge. Gratuity suggestions printed below the total (10%/15%/20%) are informational only, not charged into the total. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

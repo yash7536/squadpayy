@@ -1,0 +1,38 @@
+{
+  "receiptId": "receipt-10",
+  "imageFile": "receipt-10.jpg",
+  "merchant": "HMS Host — Esquire Grille (Sacramento Intl Airport)",
+  "items": [
+    {
+      "name": "DB Woodford Res 2",
+      "quantity": 1,
+      "lineTotal": 17.99
+    },
+    {
+      "name": "Cab Peju Sauv S",
+      "quantity": 1,
+      "lineTotal": 11
+    },
+    {
+      "name": "Sand Gld Chix",
+      "quantity": 1,
+      "lineTotal": 14.5
+    },
+    {
+      "name": "Sld Shrimp Louie",
+      "quantity": 1,
+      "lineTotal": 24
+    },
+    {
+      "name": "SD Brussel Sprts",
+      "quantity": 1,
+      "lineTotal": 7
+    }
+  ],
+  "tax": 5.96,
+  "receiptTotal": 80.45,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Item names are recorded EXACTLY as abbreviated on the printed receipt — deliberately NOT expanded into inferred full dish names, since the evaluation question is whether the AI reads the printed text accurately, not whether it guesses intended meaning. Several unpriced sub-notes ('Peju Cabernet Sauvignon', 'DRESS ON SIDE', etc.) are preparation/description details, not separate items. Deliberately difficult (heavy abbreviation) case. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

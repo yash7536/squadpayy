@@ -1,0 +1,104 @@
+{
+  "receiptId": "receipt-09",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T10:34:48.645Z",
+  "durationMs": 9893,
+  "imageSha256": "2f0faf58ecf84e53801e08119059d83c6df705c3759e21c7a2cf691c8e758d1a",
+  "outcome": {
+    "status": "success",
+    "merchant": "SASKA'S",
+    "items": [
+      {
+        "name": "Draft Blackhouse",
+        "quantity": 1,
+        "amount": 7
+      },
+      {
+        "name": "\"Cowboy\" 16oz Ribeye",
+        "quantity": 1,
+        "amount": 45
+      },
+      {
+        "name": "Make It Blue",
+        "quantity": 1,
+        "amount": 5
+      },
+      {
+        "name": "Add Lobster",
+        "quantity": 1,
+        "amount": 21
+      },
+      {
+        "name": "CK Manhattan",
+        "quantity": 2,
+        "amount": 10
+      },
+      {
+        "name": "Whistle Pig Rye 10yr",
+        "quantity": 2,
+        "amount": 40
+      },
+      {
+        "name": "\"Duke\" 16oz Top Sirloin",
+        "quantity": 1,
+        "amount": 34
+      },
+      {
+        "name": "Make It Blue",
+        "quantity": 1,
+        "amount": 5
+      }
+    ],
+    "taxAndService": 12.94,
+    "total": 179.94
+  },
+  "rawExtractedJson": {
+    "merchant": "SASKA'S",
+    "location": "3768 Mission Blvd, San Diego CA 92109",
+    "items": [
+      {
+        "name": "Draft Blackhouse",
+        "quantity": 1,
+        "amount": 7
+      },
+      {
+        "name": "\"Cowboy\" 16oz Ribeye",
+        "quantity": 1,
+        "amount": 45
+      },
+      {
+        "name": "Make It Blue",
+        "quantity": 1,
+        "amount": 5
+      },
+      {
+        "name": "Add Lobster",
+        "quantity": 1,
+        "amount": 21
+      },
+      {
+        "name": "CK Manhattan",
+        "quantity": 2,
+        "amount": 10
+      },
+      {
+        "name": "Whistle Pig Rye 10yr",
+        "quantity": 2,
+        "amount": 40
+      },
+      {
+        "name": "\"Duke\" 16oz Top Sirloin",
+        "quantity": 1,
+        "amount": 34
+      },
+      {
+        "name": "Make It Blue",
+        "quantity": 1,
+        "amount": 5
+      }
+    ],
+    "subtotal": 167,
+    "taxAndService": 12.94,
+    "total": 179.94
+  }
+}

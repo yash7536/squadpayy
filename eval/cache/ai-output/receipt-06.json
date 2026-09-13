@@ -1,0 +1,44 @@
+{
+  "receiptId": "receipt-06",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T10:34:21.134Z",
+  "durationMs": 6683,
+  "imageSha256": "df88fa05e6930aceabee30559f31e203925702ee255ea072444daf4e48159e8c",
+  "outcome": {
+    "status": "success",
+    "merchant": "Chelokababi",
+    "items": [
+      {
+        "name": "Koobideh",
+        "quantity": 7,
+        "amount": 115.5
+      },
+      {
+        "name": "Nan-O-Sabzi",
+        "quantity": 1,
+        "amount": 8.95
+      }
+    ],
+    "taxAndService": 35.62,
+    "total": 160.07
+  },
+  "rawExtractedJson": {
+    "merchant": "Chelokababi",
+    "location": "1236 S Wolfe Rd, Sunnyvale, CA 94086",
+    "items": [
+      {
+        "name": "Koobideh",
+        "quantity": 7,
+        "amount": 115.5
+      },
+      {
+        "name": "Nan-O-Sabzi",
+        "quantity": 1,
+        "amount": 8.95
+      }
+    ],
+    "subtotal": 124.45,
+    "taxAndService": 35.62,
+    "total": 160.07
+  }
+}

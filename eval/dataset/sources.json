@@ -1,0 +1,165 @@
+{
+  "_readme": "Provenance for the 15 evaluation receipt images. Every image is from a publicly available dataset/demo image published specifically for OCR/receipt-processing use, not a private/personal receipt. See eval/README.md for methodology.",
+  "_rejectedCandidates": [
+    {
+      "source": "ExpressExpense SRD, 1041-receipt.jpg and 1114-receipt.jpg",
+      "reason": "Byte-identical duplicates of 1034-receipt.jpg (used as receipt-11) within the same zip — not a distinct receipt, so not counted separately."
+    },
+    {
+      "source": "ExpressExpense SRD, 1050-receipt.jpg (Hollywood Cafe & Sports Bar)",
+      "reason": "A fold/crease across the top-left corner obscures which price value lines up with which item label — the item/price alignment is genuinely ambiguous from the image, so ground truth could not be reliably established without guessing. Replaced rather than guessed, per instructions."
+    },
+    {
+      "source": "ExpressExpense SRD, 1090-receipt.jpg (Five Guys)",
+      "reason": "Glare across the receipt obscures the exact last digit of two item prices ('Large Soda' and 'Cheeseburger'). The printed Subtotal lets you solve for their COMBINED value but not each one individually, so two individual line-item ground-truth values could not be independently verified. Replaced rather than guessed."
+    }
+  ],
+  "receipts": [
+    {
+      "receiptId": "receipt-01",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1070-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense 'Sample Receipt Dataset' (SRD) — 200 real US restaurant receipt photos published under the MIT License specifically for OCR/ML use.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-02",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1030-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-03",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1000-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-04",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1010-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-05",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1130-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-06",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1110-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-07",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1170-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-08",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1020-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-09",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1005-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-10",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1150-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-11",
+      "sourceUrl": "https://expressexpense.com/blog/free-receipt-images-ocr-machine-learning-dataset/",
+      "imageUrl": "https://expressexpense.com/large-receipt-image-dataset-SRD.zip",
+      "originalFilename": "1034-receipt.jpg",
+      "license": "MIT License (ExpressExpense Sample Receipt Dataset)",
+      "sourceDescription": "ExpressExpense Sample Receipt Dataset. Note: this file is byte-identical to two other images in the same 200-image zip (1041-receipt.jpg, 1114-receipt.jpg) — only one copy was used.",
+      "redactionOrCropping": "none",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-12",
+      "sourceUrl": "https://ocr.space/receiptscanning",
+      "imageUrl": "https://ocr.space/content/images/receipt-ocr-original.jpg",
+      "license": "Not explicitly stated by OCR.space; used here as their own long-standing public demo image for their receipt-OCR product page (i.e. published by the rights-holder specifically for public OCR demonstration).",
+      "sourceDescription": "OCR.space's own public demo Walmart grocery receipt, hosted on their marketing site as the example image for their receipt-scanning API.",
+      "redactionOrCropping": "NONE PERFORMED — flagged, not silently skipped. The image contains a printed store manager's name ('MANAGER DIANA EARNEST'), which is business-role information (not customer PII), and a payment card number already masked to its last 4 digits by the merchant's own POS system. Redaction was attempted but no image-editing tool (ImageMagick/PIL/etc.) was available in this sandboxed environment; rather than risk a broken hand-rolled binary edit, the image was kept as-is with this limitation disclosed. If stricter redaction is required, either edit the image manually or replace this receipt.",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-13",
+      "sourceUrl": "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+      "imageUrl": "https://datasets-server.huggingface.co/rows?dataset=naver-clova-ix%2Fcord-v2&config=default&split=test&offset=0&length=6 (row_idx 1)",
+      "license": "CC BY 4.0 (Creative Commons Attribution) — NAVER CLOVA AI, 'CORD: A Consolidated Receipt Dataset for Post-OCR Parsing'.",
+      "sourceDescription": "CORD dataset — real Indonesian retail/restaurant receipts collected by NAVER CLOVA AI for receipt-understanding research, released CC BY 4.0.",
+      "redactionOrCropping": "None performed by us. The published dataset image already has its merchant-identifying header region blurred by the dataset's own curators.",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-14",
+      "sourceUrl": "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+      "imageUrl": "https://datasets-server.huggingface.co/rows?dataset=naver-clova-ix%2Fcord-v2&config=default&split=test&offset=0&length=6 (row_idx 4)",
+      "license": "CC BY 4.0 — NAVER CLOVA AI, CORD dataset.",
+      "sourceDescription": "CORD dataset.",
+      "redactionOrCropping": "None performed by us. Merchant header pre-blurred by the dataset curators.",
+      "groundTruthVerified": true
+    },
+    {
+      "receiptId": "receipt-15",
+      "sourceUrl": "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+      "imageUrl": "https://datasets-server.huggingface.co/rows?dataset=naver-clova-ix%2Fcord-v2&config=default&split=test&offset=0&length=6 (row_idx 5)",
+      "license": "CC BY 4.0 — NAVER CLOVA AI, CORD dataset.",
+      "sourceDescription": "CORD dataset.",
+      "redactionOrCropping": "None performed by us. Merchant header pre-blurred by the dataset curators.",
+      "groundTruthVerified": true
+    }
+  ]
+}

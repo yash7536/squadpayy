@@ -1,0 +1,22 @@
+{
+  "receiptId": "receipt-08",
+  "extractionStatus": "failed",
+  "extractionFailureCategory": "malformed_response",
+  "extractionErrorMessage": "Gemini's response didn't match the expected schema: [\n  {\n    \"origin\": \"number\",\n    \"code\": \"too_small\",\n    \"minimum\": 0,\n    \"inclusive\": true,\n    \"path\": [\n      \"items\",\n      5,\n      \"amount\"\n    ],\n    \"message\": \"Too small: expected number to be >=0\"\n  }\n]",
+  "groundTruthItemCount": 5,
+  "aiItemCount": 0,
+  "itemAccuracy": null,
+  "quantityAccuracy": null,
+  "priceAccuracy": null,
+  "taxWithinTolerance": null,
+  "totalWithinTolerance": null,
+  "reconciled": null,
+  "reconciliationDifference": null,
+  "failureCategories": [
+    "malformed_response"
+  ],
+  "fullyCorrect": false,
+  "notes": [
+    "Gemini's response didn't match the expected schema: [\n  {\n    \"origin\": \"number\",\n    \"code\": \"too_small\",\n    \"minimum\": 0,\n    \"inclusive\": true,\n    \"path\": [\n      \"items\",\n      5,\n      \"amount\"\n    ],\n    \"message\": \"Too small: expected number to be >=0\"\n  }\n]"
+  ]
+}

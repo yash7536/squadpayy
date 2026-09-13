@@ -1,0 +1,12 @@
+{
+  "receiptId": "receipt-08",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T14:49:19.632Z",
+  "durationMs": 7384,
+  "imageSha256": "72e45a4dab3597d00628c3db34a64e26203731827fb70afcaf60ec4dcffb10ac",
+  "outcome": {
+    "status": "failed",
+    "failureCategory": "malformed_response",
+    "errorMessage": "Gemini's response didn't match the expected schema: [\n  {\n    \"origin\": \"number\",\n    \"code\": \"too_small\",\n    \"minimum\": 0,\n    \"inclusive\": true,\n    \"path\": [\n      \"items\",\n      5,\n      \"amount\"\n    ],\n    \"message\": \"Too small: expected number to be >=0\"\n  }\n]"
+  }
+}

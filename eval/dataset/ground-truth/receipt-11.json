@@ -1,0 +1,28 @@
+{
+  "receiptId": "receipt-11",
+  "imageFile": "receipt-11.jpg",
+  "merchant": "la Source",
+  "items": [
+    {
+      "name": "Perrier",
+      "quantity": 1,
+      "lineTotal": 5.8
+    },
+    {
+      "name": "Coca-Cola",
+      "quantity": 1,
+      "lineTotal": 5.8
+    },
+    {
+      "name": "Jus Orange",
+      "quantity": 1,
+      "lineTotal": 5.4
+    }
+  ],
+  "tax": 1.55,
+  "receiptTotal": 17,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "French receipt (Paris) — item prices (5.80/5.80/5.40) are VAT-inclusive (standard EU practice), and 'TOTAL EURO 17.00' already includes the VAT shown separately as 'Dont TVA 10% = 1.55' (VAT-of-which, not additive). So items+tax (18.55) will NOT equal receiptTotal (17.00) by construction — an inclusive- vs exclusive-tax convention mismatch, not an extraction error. SquadPay's extraction prompt assumes additive/exclusive tax, so this is a deliberately included, genuinely difficult locale case. Image is low resolution (small thumbnail). Currency: EUR, not INR/USD. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

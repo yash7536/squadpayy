@@ -1,0 +1,54 @@
+{
+  "receiptId": "receipt-11",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T10:35:07.073Z",
+  "durationMs": 10579,
+  "imageSha256": "d5143c8893af2f73fa5e9fa7cf0682e5126f75f944f5efb8eb41baa6e7622608",
+  "outcome": {
+    "status": "success",
+    "merchant": "la Source",
+    "items": [
+      {
+        "name": "PERRIER",
+        "quantity": 1,
+        "amount": 5.8
+      },
+      {
+        "name": "COCA-COLA",
+        "quantity": 1,
+        "amount": 5.8
+      },
+      {
+        "name": "JUS ORANGE",
+        "quantity": 1,
+        "amount": 5.4
+      }
+    ],
+    "taxAndService": 0,
+    "total": 17
+  },
+  "rawExtractedJson": {
+    "merchant": "la Source",
+    "location": "39, Rue Alain Chartier 75015 PARIS",
+    "items": [
+      {
+        "name": "PERRIER",
+        "quantity": 1,
+        "amount": 5.8
+      },
+      {
+        "name": "COCA-COLA",
+        "quantity": 1,
+        "amount": 5.8
+      },
+      {
+        "name": "JUS ORANGE",
+        "quantity": 1,
+        "amount": 5.4
+      }
+    ],
+    "subtotal": 17,
+    "taxAndService": 0,
+    "total": 17
+  }
+}

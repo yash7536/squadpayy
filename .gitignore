@@ -32,11 +32,25 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-!.env.local.example
 
 # vercel
 .vercel
 
+# raw Stitch design export (reference assets, not part of the app)
+/stitch_squadpay_bill_splitter_app/
+
+# Claude Code session-runtime files (not project config)
+.claude/scheduled_tasks.lock
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# receipt OCR evaluation harness (see eval/README.md and
+# eval/dataset/sources.json). The 15 receipt images currently in
+# eval/dataset/receipts/ are sourced from public, permissively-licensed
+# datasets/demo images (see sources.json for each one's license) and are
+# meant to be committed — they're the actual portfolio evidence, same as
+# eval/cache and eval/results. If you ever swap any of them for your own
+# personal receipt photos, gitignore those specific files yourself before
+# pushing — this harness does not assume that for you.

@@ -1,0 +1,143 @@
+{
+  "receiptId": "receipt-12",
+  "imageFile": "receipt-12.png",
+  "merchant": "Walmart",
+  "items": [
+    {
+      "name": "PET TOY",
+      "quantity": 1,
+      "lineTotal": 1.97
+    },
+    {
+      "name": "FLOPPY PUPPY",
+      "quantity": 1,
+      "lineTotal": 1.97
+    },
+    {
+      "name": "SSSUPREME S",
+      "quantity": 1,
+      "lineTotal": 4.97
+    },
+    {
+      "name": "2.5 SQUEAK",
+      "quantity": 1,
+      "lineTotal": 5.92
+    },
+    {
+      "name": "MUNCHY DMBEL",
+      "quantity": 1,
+      "lineTotal": 3.77
+    },
+    {
+      "name": "DOG TREAT",
+      "quantity": 1,
+      "lineTotal": 2.92
+    },
+    {
+      "name": "PED PCH 1",
+      "quantity": 1,
+      "lineTotal": 0.5
+    },
+    {
+      "name": "PED PCH 1",
+      "quantity": 1,
+      "lineTotal": 0.5
+    },
+    {
+      "name": "COUPON 23100",
+      "quantity": 1,
+      "lineTotal": -1
+    },
+    {
+      "name": "HNYMD SMORES",
+      "quantity": 1,
+      "lineTotal": 3.98
+    },
+    {
+      "name": "FRENCH DRSNG",
+      "quantity": 1,
+      "lineTotal": 1.98
+    },
+    {
+      "name": "3 ORANGES",
+      "quantity": 1,
+      "lineTotal": 5.47
+    },
+    {
+      "name": "BABY CARROTS",
+      "quantity": 1,
+      "lineTotal": 1.48
+    },
+    {
+      "name": "COLLARDS",
+      "quantity": 1,
+      "lineTotal": 1.24
+    },
+    {
+      "name": "CALZONE",
+      "quantity": 1,
+      "lineTotal": 2.5
+    },
+    {
+      "name": "MM RVW MNT",
+      "quantity": 1,
+      "lineTotal": 19.77
+    },
+    {
+      "name": "STKOBRLPLABL",
+      "quantity": 1,
+      "lineTotal": 1.97
+    },
+    {
+      "name": "STKOBRLPLABL",
+      "quantity": 1,
+      "lineTotal": 1.97
+    },
+    {
+      "name": "STKO SUNFLWR",
+      "quantity": 1,
+      "lineTotal": 0.97
+    },
+    {
+      "name": "STKO SUNFLWR",
+      "quantity": 1,
+      "lineTotal": 0.97
+    },
+    {
+      "name": "STKO SUNFLWR",
+      "quantity": 1,
+      "lineTotal": 0.97
+    },
+    {
+      "name": "STKO SUNFLWR",
+      "quantity": 1,
+      "lineTotal": 0.97
+    },
+    {
+      "name": "BLING BEADS",
+      "quantity": 1,
+      "lineTotal": 0.97
+    },
+    {
+      "name": "GREAT VALUE",
+      "quantity": 1,
+      "lineTotal": 9.97
+    },
+    {
+      "name": "LIPTON",
+      "quantity": 1,
+      "lineTotal": 4.48
+    },
+    {
+      "name": "DRY DOG",
+      "quantity": 1,
+      "lineTotal": 12.44
+    }
+  ],
+  "tax": 4.59,
+  "receiptTotal": 98.21,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "25 real merchandise items scanned (receipt itself confirms '# ITEMS SOLD 25') plus one coupon/discount line ('COUPON 23100', -1.00) recorded as a 26th items[] entry with a NEGATIVE lineTotal so items+tax reconciles exactly to the printed total (verified: sum of all 26 lines = 93.62 = printed SUBTOTAL; +4.59 tax = 98.21 = printed TOTAL). Production's Gemini extraction schema (lib/gemini/schema.ts) only accepts NON-NEGATIVE item amounts — this receipt is a deliberate stress case for whether/how the AI handles a coupon line (it may omit it, flip its sign, or fail schema validation entirely if it literally emits a negative number). That is a real finding to report, not a dataset defect. Item names are recorded exactly as printed abbreviated SKU descriptions, not expanded/guessed. Two 'PED PCH 1' and four 'STKO SUNFLWR' lines are literally repeated identical scans (same product bought multiple times) — recorded as separate line items since the receipt itself doesn't aggregate them. Card number is masked to last 4 digits as printed (standard masking, not sensitive). This is ocr.space's own long-standing public demo receipt image; the store manager's name is printed on it (business-role disclosure, not customer PII) — redaction was attempted but no image-editing tool was available in this environment, so it was consciously retained as-is; see eval/dataset/sources.json."
+}

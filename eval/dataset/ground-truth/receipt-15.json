@@ -1,0 +1,17 @@
+{
+  "receiptId": "receipt-15",
+  "imageFile": "receipt-15.jpg",
+  "items": [
+    {
+      "name": "TRAD KY TOAST CARTE",
+      "quantity": 1,
+      "lineTotal": 28182
+    }
+  ],
+  "tax": 2818,
+  "receiptTotal": 31000,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Merchant blurred/unreadable (CORD privacy redaction). Receipt uses '.' as a thousands separator (e.g. '28.182' = 28,182), not a decimal point — values recorded here as plain integer Rupiah. Tax is printed as 'PB-1 10%' (a regional Indonesian restaurant-tax code, not the word 'tax') — recorded as the tax field since it functions as the receipt's tax/service line; arithmetic confirms it (28,182 + 2,818 = 31,000, matching the printed TOTAL exactly). Photo shows the receipt held in a hand (no face or other identifying detail). Currency: IDR. Source: CORD (Consolidated Receipt Dataset), CC BY 4.0, via Hugging Face naver-clova-ix/cord-v2."
+}

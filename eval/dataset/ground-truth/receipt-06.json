@@ -1,0 +1,24 @@
+{
+  "receiptId": "receipt-06",
+  "imageFile": "receipt-06.jpg",
+  "merchant": "Chelokababi",
+  "items": [
+    {
+      "name": "Koobideh",
+      "quantity": 7,
+      "unitPrice": 16.5,
+      "lineTotal": 115.5
+    },
+    {
+      "name": "Nan-O-Sabzi",
+      "quantity": 1,
+      "lineTotal": 8.95
+    }
+  ],
+  "tax": 13.22,
+  "receiptTotal": 160.07,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "An '18% Gratuity' of $22.40 (handwritten note beside it reads 'Thanks :)', but the label and amount are printed, not handwritten) is folded into the printed 'Subtotal' (146.85 = 124.45 items + 22.40 gratuity) BEFORE tax is applied. receiptTotal (160.07) therefore does NOT equal items+tax (137.67) — the 22.40 gap is the gratuity, which this schema doesn't track as a separate field (see eval/README.md). This is a deliberately included service-charge case. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

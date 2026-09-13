@@ -1,0 +1,33 @@
+{
+  "receiptId": "receipt-15",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T14:50:31.834Z",
+  "durationMs": 10647,
+  "imageSha256": "02032d7f74a5b74b2a85bd868b433fa57fe77bb997186a0cf33d182cce42fb84",
+  "outcome": {
+    "status": "success",
+    "merchant": "Unknown",
+    "items": [
+      {
+        "name": "TRAD KY TOAST CARTE",
+        "quantity": 1,
+        "amount": 28.182
+      }
+    ],
+    "taxAndService": 2.818,
+    "total": 31
+  },
+  "rawExtractedJson": {
+    "merchant": "Unknown",
+    "items": [
+      {
+        "name": "TRAD KY TOAST CARTE",
+        "quantity": 1,
+        "amount": 28.182
+      }
+    ],
+    "subtotal": 28.182,
+    "taxAndService": 2.818,
+    "total": 31
+  }
+}

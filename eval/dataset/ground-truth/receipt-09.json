@@ -1,0 +1,55 @@
+{
+  "receiptId": "receipt-09",
+  "imageFile": "receipt-09.jpg",
+  "merchant": "Saska's",
+  "items": [
+    {
+      "name": "Draft Blackhouse",
+      "quantity": 1,
+      "lineTotal": 7
+    },
+    {
+      "name": "\"Cowboy\" 16oz Ribeye",
+      "quantity": 1,
+      "lineTotal": 45
+    },
+    {
+      "name": "Make It Blue",
+      "quantity": 1,
+      "lineTotal": 5
+    },
+    {
+      "name": "Add Lobster",
+      "quantity": 1,
+      "lineTotal": 21
+    },
+    {
+      "name": "CK Manhattan",
+      "quantity": 2,
+      "unitPrice": 5,
+      "lineTotal": 10
+    },
+    {
+      "name": "Whistle Pig Rye 10yr",
+      "quantity": 2,
+      "unitPrice": 20,
+      "lineTotal": 40
+    },
+    {
+      "name": "\"Duke\" 16oz Top Sirloin",
+      "quantity": 1,
+      "lineTotal": 34
+    },
+    {
+      "name": "Make It Blue",
+      "quantity": 1,
+      "lineTotal": 5
+    }
+  ],
+  "tax": 12.94,
+  "receiptTotal": 179.94,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "'Make It Blue' (a preparation modifier, +$5.00) appears twice as separate priced lines, once under each steak — recorded as two distinct line items since each carries its own charge. '(2)BMOD Up' is an unpriced bar-modifier annotation, not counted as an item. Suggested-tip lines are informational only. Deliberately difficult item-structure case. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

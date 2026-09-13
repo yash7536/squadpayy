@@ -1,0 +1,84 @@
+{
+  "receiptId": "receipt-02",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T11:27:43.280Z",
+  "durationMs": 4615,
+  "imageSha256": "7213aa5b4c3279bc4a2116ca49f88b16a193c70514aec699794a9244b4283642",
+  "outcome": {
+    "status": "success",
+    "merchant": "VILLA D'ESTE RESTAURANT",
+    "items": [
+      {
+        "name": "Coffee",
+        "quantity": 1,
+        "amount": 3.5
+      },
+      {
+        "name": "Glass House Wine",
+        "quantity": 1,
+        "amount": 9.95
+      },
+      {
+        "name": "Jumbo Coctail Shrimp",
+        "quantity": 1,
+        "amount": 12.95
+      },
+      {
+        "name": "Escargot Bourguignonne",
+        "quantity": 1,
+        "amount": 10.95
+      },
+      {
+        "name": "Veal Zingaria",
+        "quantity": 1,
+        "amount": 23.95
+      },
+      {
+        "name": "Duckling ala Arancio",
+        "quantity": 1,
+        "amount": 25.95
+      }
+    ],
+    "taxAndService": 7.53,
+    "total": 94.78
+  },
+  "rawExtractedJson": {
+    "merchant": "VILLA D'ESTE RESTAURANT",
+    "location": "186 Jericho Tpke, floral park, NY 11001",
+    "items": [
+      {
+        "name": "Coffee",
+        "quantity": 1,
+        "amount": 3.5
+      },
+      {
+        "name": "Glass House Wine",
+        "quantity": 1,
+        "amount": 9.95
+      },
+      {
+        "name": "Jumbo Coctail Shrimp",
+        "quantity": 1,
+        "amount": 12.95
+      },
+      {
+        "name": "Escargot Bourguignonne",
+        "quantity": 1,
+        "amount": 10.95
+      },
+      {
+        "name": "Veal Zingaria",
+        "quantity": 1,
+        "amount": 23.95
+      },
+      {
+        "name": "Duckling ala Arancio",
+        "quantity": 1,
+        "amount": 25.95
+      }
+    ],
+    "subtotal": 87.25,
+    "taxAndService": 7.53,
+    "total": 94.78
+  }
+}

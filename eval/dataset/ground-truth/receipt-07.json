@@ -1,0 +1,44 @@
+{
+  "receiptId": "receipt-07",
+  "imageFile": "receipt-07.jpg",
+  "merchant": "Buca di Beppo",
+  "items": [
+    {
+      "name": "Iced Tea",
+      "quantity": 1,
+      "lineTotal": 3.29
+    },
+    {
+      "name": "Sm Garlic Bread",
+      "quantity": 1,
+      "lineTotal": 9.99
+    },
+    {
+      "name": "9oz Buca Chianti",
+      "quantity": 2,
+      "unitPrice": 14,
+      "lineTotal": 28
+    },
+    {
+      "name": "Gl Buca Chianti",
+      "quantity": 1,
+      "lineTotal": 10
+    },
+    {
+      "name": "Sm Chop Antipasto Salad",
+      "quantity": 1,
+      "lineTotal": 18.99
+    },
+    {
+      "name": "Lg Supremo Pizza",
+      "quantity": 1,
+      "lineTotal": 29.99
+    }
+  ],
+  "tax": 9.02,
+  "receiptTotal": 109.28,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Receipt photographed against a magazine background (visible through the translucent thermal paper) but text is fully legible. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

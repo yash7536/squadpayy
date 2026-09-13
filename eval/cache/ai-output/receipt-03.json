@@ -1,0 +1,54 @@
+{
+  "receiptId": "receipt-03",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T10:33:55.183Z",
+  "durationMs": 7406,
+  "imageSha256": "9bf479add55511200724d35e215550b2c68eaa1b03526965fad3a67667f6935b",
+  "outcome": {
+    "status": "success",
+    "merchant": "GREEN FIELD",
+    "items": [
+      {
+        "name": "Coffee",
+        "quantity": 1,
+        "amount": 3
+      },
+      {
+        "name": "Lunch",
+        "quantity": 2,
+        "amount": 45.9
+      },
+      {
+        "name": "Coke",
+        "quantity": 1,
+        "amount": 3
+      }
+    ],
+    "taxAndService": 4.68,
+    "total": 56.58
+  },
+  "rawExtractedJson": {
+    "merchant": "GREEN FIELD",
+    "location": "5305 E PACIFIC COAST HWY, Long Beach, CA 90804",
+    "items": [
+      {
+        "name": "Coffee",
+        "quantity": 1,
+        "amount": 3
+      },
+      {
+        "name": "Lunch",
+        "quantity": 2,
+        "amount": 45.9
+      },
+      {
+        "name": "Coke",
+        "quantity": 1,
+        "amount": 3
+      }
+    ],
+    "subtotal": 51.9,
+    "taxAndService": 4.68,
+    "total": 56.58
+  }
+}

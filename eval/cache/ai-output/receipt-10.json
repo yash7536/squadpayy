@@ -1,0 +1,74 @@
+{
+  "receiptId": "receipt-10",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T10:34:55.981Z",
+  "durationMs": 6806,
+  "imageSha256": "c76c64abc2d31cfea5735e6767612bb1927eea42debad2f2bbe1f539e48ee874",
+  "outcome": {
+    "status": "success",
+    "merchant": "Esquire Grille",
+    "items": [
+      {
+        "name": "DB WOODFRD RES Z",
+        "quantity": 1,
+        "amount": 17.99
+      },
+      {
+        "name": "CAB PEJU SAUV S",
+        "quantity": 1,
+        "amount": 11
+      },
+      {
+        "name": "SAND GRLD CHIX",
+        "quantity": 1,
+        "amount": 14.5
+      },
+      {
+        "name": "SLD SHRIMP LOUIE",
+        "quantity": 1,
+        "amount": 24
+      },
+      {
+        "name": "SD BRUSSEL SPRTS",
+        "quantity": 1,
+        "amount": 7
+      }
+    ],
+    "taxAndService": 5.96,
+    "total": 80.45
+  },
+  "rawExtractedJson": {
+    "merchant": "Esquire Grille",
+    "location": "Sacramento Intl Airport",
+    "items": [
+      {
+        "name": "DB WOODFRD RES Z",
+        "quantity": 1,
+        "amount": 17.99
+      },
+      {
+        "name": "CAB PEJU SAUV S",
+        "quantity": 1,
+        "amount": 11
+      },
+      {
+        "name": "SAND GRLD CHIX",
+        "quantity": 1,
+        "amount": 14.5
+      },
+      {
+        "name": "SLD SHRIMP LOUIE",
+        "quantity": 1,
+        "amount": 24
+      },
+      {
+        "name": "SD BRUSSEL SPRTS",
+        "quantity": 1,
+        "amount": 7
+      }
+    ],
+    "subtotal": 74.49,
+    "taxAndService": 5.96,
+    "total": 80.45
+  }
+}

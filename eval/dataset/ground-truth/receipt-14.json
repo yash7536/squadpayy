@@ -1,0 +1,27 @@
+{
+  "receiptId": "receipt-14",
+  "imageFile": "receipt-14.jpg",
+  "items": [
+    {
+      "name": "ICE BLACKCOFFE",
+      "quantity": 2,
+      "lineTotal": 82000
+    },
+    {
+      "name": "AVOCADO COFFEE",
+      "quantity": 1,
+      "lineTotal": 61000
+    },
+    {
+      "name": "CHIKEN KATSU FF",
+      "quantity": 1,
+      "lineTotal": 51000
+    }
+  ],
+  "tax": 0,
+  "receiptTotal": 174600,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Merchant blurred/unreadable (CORD privacy redaction). Item name 'CHIKEN KATSU FF' is printed with this exact (misspelled/abbreviated) text — recorded verbatim. A 10% DISCOUNT of 19,400 is printed and already subtracted in the receipt's own arithmetic (SUB_TOTAL 194,000 − 19,400 = TOTAL 174,600); this schema has no separate discount field, so items+tax (194,000) will not equal receiptTotal (174,600) by exactly 19,400 — same discount-handling limitation as receipt-08. No tax line printed (recorded as 0). Photo shows the receipt on crumpled/creased thermal paper — deliberate image-quality difficulty case. Currency: IDR. Source: CORD (Consolidated Receipt Dataset), CC BY 4.0, via Hugging Face naver-clova-ix/cord-v2."
+}

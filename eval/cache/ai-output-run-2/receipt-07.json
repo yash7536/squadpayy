@@ -1,0 +1,84 @@
+{
+  "receiptId": "receipt-07",
+  "model": "gemini-3.6-flash",
+  "evaluatedAt": "2026-09-13T14:49:11.730Z",
+  "durationMs": 9801,
+  "imageSha256": "a49ba6ceaa36535710f9d6e30dcc9ba946c640db0fae5a258ce6c4cf68beb64f",
+  "outcome": {
+    "status": "success",
+    "merchant": "Buca di Beppo",
+    "items": [
+      {
+        "name": "Iced Tea",
+        "quantity": 1,
+        "amount": 3.29
+      },
+      {
+        "name": "Sm Garlic Bread",
+        "quantity": 1,
+        "amount": 9.99
+      },
+      {
+        "name": "9oz Buca Chianti",
+        "quantity": 2,
+        "amount": 28
+      },
+      {
+        "name": "Gl Buca Chianti",
+        "quantity": 1,
+        "amount": 10
+      },
+      {
+        "name": "Sm Chop Antipasto Salad",
+        "quantity": 1,
+        "amount": 18.99
+      },
+      {
+        "name": "Lg Supremo Pizza",
+        "quantity": 1,
+        "amount": 29.99
+      }
+    ],
+    "taxAndService": 9.02,
+    "total": 109.28
+  },
+  "rawExtractedJson": {
+    "merchant": "Buca di Beppo",
+    "location": "Universal City, CA 91608",
+    "items": [
+      {
+        "name": "Iced Tea",
+        "quantity": 1,
+        "amount": 3.29
+      },
+      {
+        "name": "Sm Garlic Bread",
+        "quantity": 1,
+        "amount": 9.99
+      },
+      {
+        "name": "9oz Buca Chianti",
+        "quantity": 2,
+        "amount": 28
+      },
+      {
+        "name": "Gl Buca Chianti",
+        "quantity": 1,
+        "amount": 10
+      },
+      {
+        "name": "Sm Chop Antipasto Salad",
+        "quantity": 1,
+        "amount": 18.99
+      },
+      {
+        "name": "Lg Supremo Pizza",
+        "quantity": 1,
+        "amount": 29.99
+      }
+    ],
+    "subtotal": 100.26,
+    "taxAndService": 9.02,
+    "total": 109.28
+  }
+}

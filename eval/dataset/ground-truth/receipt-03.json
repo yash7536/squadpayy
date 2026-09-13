@@ -1,0 +1,28 @@
+{
+  "receiptId": "receipt-03",
+  "imageFile": "receipt-03.jpg",
+  "merchant": "Green Field",
+  "items": [
+    {
+      "name": "Coffee",
+      "quantity": 1,
+      "lineTotal": 3
+    },
+    {
+      "name": "Lunch",
+      "quantity": 2,
+      "lineTotal": 45.9
+    },
+    {
+      "name": "Coke",
+      "quantity": 1,
+      "lineTotal": 3
+    }
+  ],
+  "tax": 4.68,
+  "receiptTotal": 56.58,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "'2 Lunch' is printed as a single line with one combined line total (45.90 for both) — no separate per-unit price shown, so unitPrice is omitted. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}

@@ -1,0 +1,18 @@
+{
+  "receiptId": "receipt-10",
+  "extractionStatus": "success",
+  "groundTruthItemCount": 5,
+  "aiItemCount": 5,
+  "itemAccuracy": 0.6,
+  "quantityAccuracy": 1,
+  "priceAccuracy": 1,
+  "taxWithinTolerance": true,
+  "totalWithinTolerance": true,
+  "reconciled": true,
+  "reconciliationDifference": -1.4210854715202004e-14,
+  "failureCategories": [
+    "incorrect_item_name"
+  ],
+  "fullyCorrect": false,
+  "notes": []
+}

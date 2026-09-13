@@ -1,0 +1,27 @@
+{
+  "receiptId": "receipt-13",
+  "imageFile": "receipt-13.jpg",
+  "items": [
+    {
+      "name": "J.STB PROMO",
+      "quantity": 1,
+      "lineTotal": 17500
+    },
+    {
+      "name": "Y.B.BAT",
+      "quantity": 1,
+      "lineTotal": 46000
+    },
+    {
+      "name": "Y.BASO PROM",
+      "quantity": 1,
+      "lineTotal": 27500
+    }
+  ],
+  "tax": 0,
+  "receiptTotal": 91000,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Merchant name/header is blurred in the published CORD dataset image (privacy redaction applied by the dataset's own curators) — merchant field left blank since it isn't independently verifiable from this image. Currency is Indonesian Rupiah (IDR), no decimal places. 'PROMO'/'PROM' in two item names are part of the literal printed product description, not a separate discount notation — no discount is deducted on this receipt. No tax line is printed (tax recorded as 0). Source: CORD (Consolidated Receipt Dataset), CC BY 4.0, via Hugging Face naver-clova-ix/cord-v2."
+}

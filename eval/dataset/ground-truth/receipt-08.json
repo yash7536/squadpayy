@@ -1,0 +1,38 @@
+{
+  "receiptId": "receipt-08",
+  "imageFile": "receipt-08.jpg",
+  "merchant": "Deccan Spice",
+  "items": [
+    {
+      "name": "Dal Fry",
+      "quantity": 1,
+      "lineTotal": 10.99
+    },
+    {
+      "name": "Paneer Butter Masala",
+      "quantity": 1,
+      "lineTotal": 12.99
+    },
+    {
+      "name": "rice",
+      "quantity": 2,
+      "lineTotal": 3.98
+    },
+    {
+      "name": "Deccan Special Biryani",
+      "quantity": 1,
+      "lineTotal": 14.99
+    },
+    {
+      "name": "rice",
+      "quantity": 1,
+      "lineTotal": 1.99
+    }
+  ],
+  "tax": 2.98,
+  "receiptTotal": 47.02,
+  "status": "verified",
+  "verifiedBy": "manual visual inspection (this session)",
+  "verifiedAt": "2026-09-12",
+  "notes": "Two separate lines are both literally printed as 'rice' (2 rice = 3.98 combined; 1 rice = 1.99) — recorded verbatim, not merged. An 'Online Offer' discount of -8.99 and an '18% TIPS' charge of +8.09 are both printed (hand-circled in pen for emphasis; the text/values themselves are original print, not handwritten). Neither is tracked as a separate field here, so items+tax (47.92) does not equal receiptTotal (47.02) — the difference (-0.90) is exactly discount(-8.99)+tip(+8.09). Deliberately included discount+service-charge case. Source: ExpressExpense Sample Receipt Dataset (MIT)."
+}
