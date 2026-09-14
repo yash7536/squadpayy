@@ -24,7 +24,12 @@ import { YOU_ID } from "@/lib/data/fixtures";
  * actually sends the split (see `commitSplit` in the summary step).
  */
 
-const STORAGE_KEY = "squadpay-draft-v1";
+// Exported so AppShell can clear an abandoned draft the moment navigation
+// actually leaves the /new-split wizard without completing it — see
+// components/app-shell/AppShell.tsx. Completion itself already clears this
+// via `reset()` below (see new-split/summary/page.tsx); this covers every
+// other way to leave (discard link, nav bar, browser back) generically.
+export const STORAGE_KEY = "squadpay-draft-v1";
 
 export interface SplitDraft {
   merchant: string;
