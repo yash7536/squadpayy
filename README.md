@@ -72,10 +72,10 @@ Methodology, how to reproduce it, and its stated limitations:
 
 This is a working, deployed product with one small-sample user-validation
 round behind it — not yet a product with measured business outcomes.
-A first round of real user testing found the core problem is genuinely
-felt (6 of the sample showed real hesitation around asking friends to
-repay them) and surfaced the most-requested next feature (UPI/GPay
-integration, deliberately deferred) — see
+A first round of real user testing across 12 known people found the core
+problem is genuinely felt (9/12 showed real hesitation around asking
+friends to repay them) and confirmed the most-requested next feature
+(UPI/GPay integration — expected by all 12, deliberately deferred) — see
 **[`docs/ai-pm/user-validation-results.md`](docs/ai-pm/user-validation-results.md)**.
 Anything about adoption, retention, or measured time saved is still a
 hypothesis, not a result — see

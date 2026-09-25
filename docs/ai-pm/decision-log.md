@@ -109,7 +109,7 @@ effort.
 ## C. P2 — do not fix now
 
 - **Direct UPI/GPay payment integration.** The single most-requested
-  feature from real user validation (3 of the sample —
+  feature from real user validation (all 12 of the sample —
   `user-validation-results.md`), explicitly deferred anyway. SquadPay's
   job is receipt → split → review → **request** payment; it never moves
   money itself, and that boundary is deliberate (see

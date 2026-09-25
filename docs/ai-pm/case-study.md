@@ -192,20 +192,25 @@ transcription, manual tax/split arithmetic, and the social awkwardness of
 initiating a payment ask (a WhatsApp-ready request is a lower-friction ask
 than a bespoke message).
 
-**Real-user validation (small-sample, exploratory — see
+**Real-user validation (12 known people, exploratory — see
 [`user-validation-results.md`](user-validation-results.md) for full
 detail and caveats):**
-- 6 participants showed hesitation around asking friends to repay shared
-  expenses — direct confirmation the underlying problem (§1) is real.
+- 9/12 participants showed hesitation around asking friends to repay
+  shared expenses — direct confirmation the underlying problem (§1) is
+  real.
 - Participants used SquadPay to identify forgotten or outstanding amounts
   and request payment — the observed value was surfacing money people had
   stopped tracking, not the receipt scan itself.
-- 2 participants initially lacked confidence in how SquadPay could help
-  and needed a demonstration; 3 found the workflow helpful.
-- 3 participants requested GPay/UPI integration for smoother payment
-  completion — the most consistent single piece of feedback, logged and
-  deliberately deferred (see Product decisions, below, and
-  `decision-log.md`).
+- In the older UI (since fixed), 6/12 found adding dishes or people
+  somewhat unclear and 4/12 needed direct help; 8/12 said they'd use
+  SquadPay again.
+- All 12/12 participants expected integrated UPI/payment functionality
+  for smoother payment completion — the most consistent single piece of
+  feedback, logged and deliberately deferred (see Product decisions,
+  below, and `decision-log.md`).
+- 10/12 said they would check the AI-extracted receipt data before
+  relying on it, and 3/12 reported an extraction issue where not all
+  dishes were added.
 
 This is exploratory evidence from a small sample, not a market
 conclusion — no completion rate, satisfaction score, or adoption number is
@@ -263,9 +268,9 @@ and guardrail work above exists to back it, not because it sounds good.
    No regressions found on any of the 15 receipts versus baseline.
 2. ✅ **Small-sample user validation, completed** — see
    [`user-validation-results.md`](user-validation-results.md). Confirmed
-   the core problem is real (6 of the sample showed hesitation around
-   repayment follow-up) and surfaced the most requested next feature
-   (UPI/GPay integration, requested by 3 participants) — deliberately not
+   the core problem is real (9/12 known participants showed hesitation
+   around repayment follow-up) and confirmed the most requested next
+   feature (UPI/GPay integration, expected by all 12) — deliberately not
    built reactively off one round of feedback; see Product Decisions above
    and `decision-log.md`.
 3. **The product has since been deployed** to the existing production
